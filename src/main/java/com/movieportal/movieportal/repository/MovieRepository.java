@@ -15,4 +15,5 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     List<Movie> findAllByTitleContaining(String word);
 
+    List<Movie> findAllByOrderByTitleAsc();
 }

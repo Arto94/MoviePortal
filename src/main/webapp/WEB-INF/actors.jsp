@@ -24,8 +24,8 @@
     <meta name="format-detection" content="telephone-no">
 
     <!-- CSS files -->
-    <link rel="stylesheet" href="/css/plugins.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="../css/plugins.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 <body>
@@ -53,15 +53,24 @@
                 </div>
                 <a href="/home"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
             </div>
+
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <!-- /.navbar-collapse -->
         </nav>
 
         <!-- top search form -->
     </div>
+    <span style="color:red; margin-left: 150px">${errorMessage}</span>
+    <div style="margin-left: 150px" class="top-search">
+        <form action="/searchActor">
+            <label for="searches"><p style="color: #BD081C">Actor Name</p></label>
+            <input id="searches" name="actorName" type="text" placeholder="Search for a movie">
+            <button type="submit">Search</button>
+        </form>
+    </div>
 </header>
 <!-- END | Header -->
-
 <div class="hero common-hero">
     <div class="container">
         <div class="row">

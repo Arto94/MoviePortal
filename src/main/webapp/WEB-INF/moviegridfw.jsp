@@ -96,14 +96,16 @@
                 <div class="topbar-filter fw">
                     <p>Found <span>${movies.size()}</span> in total</p>
                     <label>Sort by:</label>
-                    <select>
-                        <option value="name">Name</option>
-                        <option value="budget">Budget</option>
-                        <option value="rating">Rating Descending</option>
-                        <option value="rating">Rating Ascending</option>
-                        <option value="date">Release date Descending</option>
-                        <option value="date">Release date Ascending</option>
-                    </select>
+                    <form action="getMoviesOrderBy">
+                        <select>
+                            <option value="name">Name</option>
+                            <option value="budget">Budget</option>
+                            <option value="rating">Rating Descending</option>
+                            <option value="rating">Rating Ascending</option>
+                            <option value="date">Release date Descending</option>
+                            <option value="date">Release date Ascending</option>
+                        </select>
+                    </form>
                 </div>
                     <div class="flex-wrap-movielist mv-grid-fw">
                         <c:forEach items="${movies}" var="movie">
