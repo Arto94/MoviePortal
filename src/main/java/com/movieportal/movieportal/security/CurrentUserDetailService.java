@@ -19,7 +19,7 @@ public class CurrentUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         User user = userRepository.findOneByEmail(s);
         if (user == null) {
-            System.out.println();
+
             throw new UsernameNotFoundException(String.format("User with email %s not found", s));
         }
         return new CurrentUser(user);
