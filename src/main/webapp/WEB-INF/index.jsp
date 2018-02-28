@@ -320,7 +320,7 @@
     </div>
 </footer>
 <!-- end of footer section-->
-
+Hello
 <script src="../js/jquery.js"></script>
 <script src="../js/plugins.js"></script>
 <script src="../js/plugins2.js"></script>
