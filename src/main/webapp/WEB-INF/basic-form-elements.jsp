@@ -114,21 +114,22 @@
                                 </div>
                                 <div id="basicFormExample" class="panel-collapse collapse in">
                                     <div class="portlet-body">
+                                        <span style="color: red">${actorMessage}</span>
                                         <spring:form modelAttribute="actor" action="/admin/addActor" method="post"
                                                      enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <spring:input path="name" cssClass="form-control"
-                                                              id="exampleInputEmail1" placeholder="Name"></spring:input>
+                                                              id="exampleInputEmail1" placeholder="Name" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
                                                 <spring:input path="surname" cssClass="form-control"
                                                               id="exampleInputEmail1"
-                                                              placeholder="Surname"></spring:input>
+                                                              placeholder="Surname" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
                                                 <spring:input path="nationality" cssClass="form-control"
                                                               id="exampleInputEmail1"
-                                                              placeholder="Nationality"></spring:input>
+                                                              placeholder="Nationality" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
                                                 <spring:input path="age" cssClass="form-control" id="exampleInputEmail1"
@@ -158,22 +159,23 @@
                                 </div>
                                 <div id="basicFormExample" class="panel-collapse collapse in">
                                     <div class="portlet-body">
+                                        <span style="color: red">${directorMessage}</span>
                                         <spring:form modelAttribute="director" action="/admin/addDirector"
                                                      method="post">
                                             <div class="form-group">
                                                 <spring:input path="name" cssClass="form-control"
-                                                              id="exampleInputEmail1" placeholder="Name"></spring:input>
+                                                              id="exampleInputEmail1" placeholder="Name" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
                                                 <spring:input path="surname" cssClass="form-control"
                                                               id="exampleInputEmail1"
-                                                              placeholder="Surname"></spring:input>
+                                                              placeholder="Surname" required="required"></spring:input>
                                             </div>
 
                                             <div class="form-group">
                                                 <spring:input path="nationality" cssClass="form-control"
                                                               id="exampleInputEmail1"
-                                                              placeholder="Nationality"></spring:input>
+                                                              placeholder="Nationality" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
                                                 <spring:input path="age" cssClass="form-control" id="exampleInputEmail1"
@@ -200,13 +202,14 @@
                                 </div>
                                 <div id="inlineFormExample" class="panel-collapse collapse in">
                                     <div class="portlet-body">
+                                        <span style="color:red;">${companyMessage}</span>
                                         <spring:form cssClass="form-inline" action="/admin/addCompany"
                                                      modelAttribute="company" method="post"
                                                      enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <spring:input path="name" cssClass="form-control"
                                                               id="exampleInputEmail2"
-                                                              placeholder="Enter Company name"></spring:input>
+                                                              placeholder="Enter Company name" required="required"></spring:input>
                                             </div>
                                             <br>
                                             <div class="form-group">
@@ -234,13 +237,14 @@
                                 </div>
                                 <div id="horizontalFormExample" class="panel-collapse collapse in">
                                     <div class="portlet-body">
+                                        <span style="color:red;">${genreMessage}</span>
                                         <spring:form action="/admin/addGenre" modelAttribute="genre" method="post"
                                                      cssClass="form-horizontal">
                                             <div class="form-group">
                                                 <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="name" placeholder="Name" cssClass="form-control"
-                                                                  id="inputEmail3"></spring:input>
+                                                                  id="inputEmail3" required="required"></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -272,20 +276,21 @@
                                 </div>
                                 <div id="formControls" class="panel-collapse collapse in">
                                     <div class="portlet-body">
+                                        <span style="color: red">${movieMessage}</span>
                                         <spring:form cssClass="form-horizontal" action="/admin/addMovie"
                                                      modelAttribute="movie" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
                                                 <label for="textInput" class="col-sm-2 control-label">Title</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="title" cssClass="form-control"
-                                                                  id="textInput"></spring:input>
+                                                                  id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="textInputDisabled" class="col-sm-2 control-label">Description</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="description" cssClass="form-control"
-                                                                  id="textInput"></spring:input>
+                                                                  id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -293,7 +298,7 @@
                                                        class="col-sm-2 control-label">Year</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="year" cssClass="form-control"
-                                                                  id="textInput"></spring:input>
+                                                                  id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -301,7 +306,7 @@
                                                        class="col-sm-2 control-label">Country</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="country" cssClass="form-control"
-                                                                  id="textInput"></spring:input>
+                                                                  id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -309,7 +314,7 @@
                                                     Minutes</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="movieTime" cssClass="form-control"
-                                                                  id="textInput"></spring:input>
+                                                                  id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
 
@@ -318,7 +323,7 @@
                                                        class="col-sm-2 control-label">Budget</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="budget" cssClass="form-control"
-                                                                  id="textInput"></spring:input>
+                                                                  id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">

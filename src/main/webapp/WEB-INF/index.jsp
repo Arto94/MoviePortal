@@ -85,25 +85,25 @@
             <div class="row">
                 Name:
                 <label>
-                    <spring:input path="name" title="name" /><br>
+                    <spring:input path="name" title="name" required="required" /><br>
                 </label>
             </div>
             <div class="row">
                 your surname:
                 <label>
-                    <spring:input path="surname" title="surname" /><br>
+                    <spring:input path="surname" title="surname" required="required" /><br>
                 </label>
             </div>
             <div class="row">
                 your email:
                 <label>
-                    <spring:input path="email" title="email"/><br>
+                    <spring:input path="email" title="email" required="required"/><br>
                 </label>
             </div>
             <div class="row">
                 Password:
                 <label>
-                    <spring:password path="password" title="password"/><br>
+                    <spring:password path="password" title="password" required="required"/><br>
                 </label>
             </div>
             <input type="file" name="picture">
@@ -320,7 +320,6 @@
     </div>
 </footer>
 <!-- end of footer section-->
-Hello
 <script src="../js/jquery.js"></script>
 <script src="../js/plugins.js"></script>
 <script src="../js/plugins2.js"></script>
