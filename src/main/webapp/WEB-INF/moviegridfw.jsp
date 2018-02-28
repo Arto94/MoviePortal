@@ -62,12 +62,13 @@
         </nav>
 
         <!-- top search form -->
+        <span style="color:red;">${errorMessage}</span>
         <div class="top-search">
-            <select>
-                <option value="united">TV show</option>
-                <option value="saab">Others</option>
-            </select>
-            <input type="text" placeholder="Search for a movie, TV Show or celebrity that you are looking for">
+           <form action="/searchMovie">
+               <label for="searches"><p style="color: #BD081C">Movie Name</p></label>
+               <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
+               <button type="submit">Search</button>
+           </form>
         </div>
     </div>
 </header>

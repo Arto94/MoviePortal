@@ -30,24 +30,20 @@ public class MovieController {
     private GenreRepository genreRepository;
 
     @GetMapping("/movies")
-    public String allMovies(ModelMap map) {
+    public String allMovies(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
         map.addAttribute("movies", movieRepository.findAll());
+        map.addAttribute("errorMessage", errorMessage!=null ? errorMessage : "");
         return "moviegridfw";
     }
 
     @GetMapping("/moviesingle")
     public String singleMovie(@RequestParam("movieId") int id, ModelMap map) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        int currentUserId = -1;
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
             map.addAttribute("currentUser", principal.getUser());
-//            currentUserId= principal.getId();
         }
         Movie single = movieRepository.findOne(id);
-
-        boolean wish = userRepository.isWish(9, single.getId());
-        map.addAttribute("favorite", wish);
         map.addAttribute("singleMovie", single);
         return "moviesingle";
     }
@@ -74,5 +70,21 @@ public class MovieController {
     public String deleteMovie(@RequestParam("movieId") int id) {
         movieRepository.delete(movieRepository.findOne(id));
         return "redirect:/basicTables";
+    }
+
+    @GetMapping("/searchMovie")
+    public String searchMovie(ModelMap map,@RequestParam("filmName") String filmName) {
+        Movie movie = movieRepository.findByTitle(filmName);
+        if (movie != null) {
+            return "redirect:/moviesingle?movieId=" + movie.getId();
+        } else {
+            List<Movie> movies = movieRepository.findAllByTitleContaining(filmName);
+            if(movies.size()==0){
+                return "redirect:/movies?errorMessage=No Film in this Name";
+            }else {
+                map.addAttribute("movies", movies);
+                return "moviegridfw";
+            }
+        }
     }
 }
