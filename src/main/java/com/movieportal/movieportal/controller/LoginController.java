@@ -66,4 +66,10 @@ public class LoginController {
         }
         return "redirect:/user";
     }
+
+    @GetMapping(value = "/login?error")
+    public String loginError() {
+        System.out.println("aaa");
+        return "/movies";
+    }
 }
