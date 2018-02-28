@@ -30,7 +30,7 @@
 
 </head>
 <body>
-
+<div style="background-color: black"><p style="color: red">${message}</p></div>
 
 <!--preloading-->
 <div id="preloader">
@@ -65,7 +65,7 @@
                     <div>
                         <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
                     </div>
-                    <%--<a href="index.html#">Forget password ?</a>--%>
+                        <%--<a href="index.html#">Forget password ?</a>--%>
                 </div>
             </div>
             <div class="row">
@@ -76,6 +76,7 @@
 </div>
 <!--end of login form popup-->
 <!--signup form popup-->
+
 <div class="login-wrapper" id="signup-content">
     <div class="login-content">
         <a href="index.html#" class="close">x</a>
@@ -84,25 +85,25 @@
             <div class="row">
                 Name:
                 <label>
-                <spring:input path="name" title="name"/><br>
+                    <spring:input path="name" title="name" /><br>
                 </label>
             </div>
             <div class="row">
                 your surname:
                 <label>
-                <spring:input path="surname" title="surname"/><br>
+                    <spring:input path="surname" title="surname" /><br>
                 </label>
             </div>
             <div class="row">
                 your email:
                 <label>
-                <spring:input path="email" title="email"/><br>
+                    <spring:input path="email" title="email"/><br>
                 </label>
             </div>
             <div class="row">
                 Password:
                 <label>
-                <spring:password path="password" title="password"/><br>
+                    <spring:password path="password" title="password"/><br>
                 </label>
             </div>
             <input type="file" name="picture">
@@ -115,6 +116,7 @@
 <!--end of signup form popup-->
 
 <!-- BEGIN | Header -->
+
 <header class="ht-header">
     <div class="container">
         <nav class="navbar navbar-default navbar-custom">

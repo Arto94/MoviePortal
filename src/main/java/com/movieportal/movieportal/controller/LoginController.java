@@ -37,6 +37,9 @@ public class LoginController {
     @PostMapping(value = "/addUser")
     public String saveUser(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam("picture") MultipartFile multipartFile) throws IOException {
         StringBuilder sb = new StringBuilder();
+        if(multipartFile.isEmpty()){
+            System.out.println("valod");
+        }
         if (result.hasErrors()) {
             for (ObjectError objectError : result.getAllErrors()) {
                 sb.append(objectError.getDefaultMessage() + "<br>");

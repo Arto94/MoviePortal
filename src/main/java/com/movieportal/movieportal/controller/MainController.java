@@ -28,15 +28,15 @@ public class MainController {
     private MovieRepository movieRepository;
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String mainPage(ModelMap map) {
+    public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
         map.addAttribute("movies", movieRepository.findAll());
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
             map.addAttribute("currentUser", principal.getUser());
-
         }
+        map.addAttribute("message", message!= null ? message : "");
         return "index";
     }
 
