@@ -75,7 +75,7 @@
                <button class="btn btn-search" type="submit">Search</button>
            </spring:form>
             <form action="/searchMovie" style="margin-left: 75%">
-                <label for="searches"><p style="color: #BD081C">Movie Name</p></label>
+                <label for="searches"><p style="color: #BD081C">Movie Title</p></label>
                 <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
                 <button class="btn btn-search" type="submit">Search</button>
             </form>
@@ -89,7 +89,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Movie Listing - Grid Fullwidth</h1>
+                    <h1>Movie Listing</h1>
                     <ul class="breadcumb">
                         <li class="active"><a href="/home">Home</a></li>
                         <li><span class="ion-ios-arrow-right"></span> movie listing</li>
