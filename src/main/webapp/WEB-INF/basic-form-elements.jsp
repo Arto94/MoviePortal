@@ -96,8 +96,8 @@
                                     </div>
                                     <div class="portlet-widgets">
                                         <a data-toggle="collapse" data-parent="#accordion"
-                                           href="basic-form-elements.html#basicFormExample"><i
-                                                class="fa fa-chevron-down"></i></a>
+                                           href="basic-form-elements.html#basicFormExample"><img src="../img/minimize-window.png" class="fa fa-chevron-down" width="30px" height="30px">
+                                               </a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -141,8 +141,7 @@
                                     </div>
                                     <div class="portlet-widgets">
                                         <a data-toggle="collapse" data-parent="#accordion"
-                                           href="basic-form-elements.html#basicFormExample"><i
-                                                class="fa fa-chevron-down"></i></a>
+                                           href="basic-form-elements.html#basicFormExample"><img src="../img/minimize-window.png" class="fa fa-chevron-down" width="30px" height="30px"></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -184,8 +183,7 @@
                                     </div>
                                     <div class="portlet-widgets">
                                         <a data-toggle="collapse" data-parent="#accordion"
-                                           href="basic-form-elements.html#inlineFormExample"><i
-                                                class="fa fa-chevron-down"></i></a>
+                                           href="basic-form-elements.html#inlineFormExample"><img src="../img/minimize-window.png" class="fa fa-chevron-down" width="30px" height="30px"></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -214,8 +212,7 @@
                                     </div>
                                     <div class="portlet-widgets">
                                         <a data-toggle="collapse" data-parent="#accordion"
-                                           href="basic-form-elements.html#horizontalFormExample"><i
-                                                class="fa fa-chevron-down"></i></a>
+                                           href="basic-form-elements.html#horizontalFormExample"><img src="../img/minimize-window.png" class="fa fa-chevron-down" width="30px" height="30px"></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
@@ -253,8 +250,7 @@
                                     </div>
                                     <div class="portlet-widgets">
                                         <a data-toggle="collapse" data-parent="#accordion"
-                                           href="basic-form-elements.html#formControls"><i
-                                                class="fa fa-chevron-down"></i></a>
+                                           href="basic-form-elements.html#formControls"><img src="../img/minimize-window.png" class="fa fa-chevron-down" width="30px" height="30px"></a>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>
