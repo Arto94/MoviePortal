@@ -185,7 +185,6 @@
                                 ${actorCount}
                                 <span id="sparklineB"></span>
                             </div>
-                             a
                         </div>
                     </div>
                 </div>
