@@ -65,7 +65,6 @@
                     <div>
                         <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
                     </div>
-                        <%--<a href="index.html#">Forget password ?</a>--%>
                 </div>
             </div>
             <div class="row">
