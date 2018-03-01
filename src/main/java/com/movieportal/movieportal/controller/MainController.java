@@ -33,34 +33,15 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-
-        List<Movie> movies = movieRepository.findAll();
-        if(movies.size()<5){
-            map.addAttribute("movies",movies);
-        }else {
-            Random random = new Random();
-            int index = random.nextInt(movies.size()-1);
-
-            List<Movie> selectMovies = new ArrayList<>();
-            for (int i = 0; i < 5;index++, i++) {
-                selectMovies.add(movies.get(index));
-                if(index == movies.size()-1) {
-                    index = 0;
-                }
-            }
-            map.addAttribute("movies", selectMovies);
-
-        }
-
-
-
+            List<Movie> movies = movieRepository.findAll().subList(1, 8);
+            map.addAttribute("movies", movies);
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
             map.addAttribute("currentUser", principal.getUser());
         }
-        map.addAttribute("message", message!= null ? message : "");
+        map.addAttribute("message", message != null ? message : "");
         return "index";
     }
 
