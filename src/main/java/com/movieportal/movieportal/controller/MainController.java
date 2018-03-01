@@ -33,7 +33,7 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-            List<Movie> movies = movieRepository.findAll().subList(1, 8);
+            List<Movie> movies = movieRepository.findAll().subList(1, 5);
             map.addAttribute("movies", movies);
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

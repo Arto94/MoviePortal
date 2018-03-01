@@ -105,7 +105,8 @@
                     <spring:password path="password" title="password" required="required"/><br>
                 </label>
             </div>
-            <input type="file" name="picture">
+
+            <input type="file" name="picture"  >
             <div class="row">
                 <button type="submit">sign up</button>
             </div>
@@ -196,7 +197,7 @@
             <div class="col-md-12">
                 <div class="title-hd">
                     <h2>in theater</h2>
-                    <a href="/movies" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+                    <a href="/movies" class="viewall">View all Movies <i class="ion-ios-arrow-right"></i></a>
                 </div>
                 <div class="videos">
                     <div class="slider-for-2 video-ft">
