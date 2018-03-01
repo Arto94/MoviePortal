@@ -260,6 +260,18 @@
 </footer>
 <!-- end of footer section-->
 
+<script>
+    function getMessages(movieId) {
+        $("#movie").val(movieid);
+        $.ajax({
+            url: "http://localhost:8080/getMessage?movieId=" + movieId,
+            success: function (data) {
+                $("#message").html(data);
+            }
+        })
+    }
+</script>
+
 <script src="../js/jquery.js"></script>
 <script src="../js/plugins.js"></script>
 <script src="../js/plugins2.js"></script>

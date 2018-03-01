@@ -53,8 +53,13 @@ public class MovieController {
             map.addAttribute("currentUser", principal.getUser());
         }
         Movie single = movieRepository.findOne(id);
-        map.addAttribute("singleMovie", single);
-        return "moviesingle";
+        if(single!=null) {
+            map.addAttribute("singleMovie", single);
+            return "moviesingle";
+        }else{
+            map.addAttribute("message","Movie Not Found");
+            return "404";
+        }
     }
 
     @GetMapping("/addFavorite")
@@ -87,10 +92,16 @@ public class MovieController {
 
     @GetMapping("/selectByGenre")
     public String selectMoviesByGenre(ModelMap map,@ModelAttribute("genreid") int genreId) {
-        Genre one = genreRepository.findOne(genreId);
-        map.addAttribute("movies",movieRepository.findAllByMovieGenresIsContaining(one));
-        map.addAttribute("genres",genreRepository.findAll());
-        return "moviegridfw";
-
+        Genre genre = genreRepository.findOne(genreId);
+        if(genre!=null) {
+            map.addAttribute("movies", movieRepository.findAllByMovieGenresIsContaining(genre));
+            map.addAttribute("genres", genreRepository.findAll());
+            return "moviegridfw";
+        }else{
+            map.addAttribute("message","Genre Not Found");
+            return "404";
+        }
     }
+
+
 }

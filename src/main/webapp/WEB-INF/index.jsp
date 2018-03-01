@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="remember">
                     <div>
-                        <input type="checkbox" name="remember" value="Remember me" required="required"><span>Remember me</span>
+                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
                     </div>
                         <%--<a href="index.html#">Forget password ?</a>--%>
                 </div>
@@ -130,7 +130,6 @@
                         <span></span>
                     </div>
                 </div>
-
                 <a href="/home"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

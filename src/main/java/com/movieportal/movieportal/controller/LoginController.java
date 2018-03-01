@@ -69,7 +69,6 @@ public class LoginController {
 
     @GetMapping(value = "/login?error")
     public String loginError() {
-        System.out.println("aaa");
         return "/movies";
     }
 }
