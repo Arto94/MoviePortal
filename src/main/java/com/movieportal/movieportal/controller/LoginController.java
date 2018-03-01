@@ -43,14 +43,18 @@ public class LoginController {
             }
             return "redirect:/home?message=" + sb.toString();
         }
-        String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-        File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
-        multipartFile.transferTo(file);
-        user.setPicUrl(picName);
-        user.setUserType(UserType.USER);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return "redirect:/home";
+        if(userRepository.findOneByEmail(user.getEmail()) == null) {
+            String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
+            File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+            multipartFile.transferTo(file);
+            user.setPicUrl(picName);
+            user.setUserType(UserType.USER);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return "redirect:/home";
+        }else {
+            return "redirect:/home?message=" + user.getEmail() + " email is exists";
+        }
     }
 
     @GetMapping(value = "/login")
