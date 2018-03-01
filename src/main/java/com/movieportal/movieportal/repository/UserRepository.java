@@ -22,8 +22,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     void addWish(@Param("userId") int userId, @Param("movieId") int movieId);
 
 
-    @Query(value = "SELECT * FROM wish where user_id=:userId AND movie_id=:movieId", nativeQuery = true)
-    boolean isWish(@Param("userId") int userId, @Param("movieId") int movieId);
+
+
 
 
 }

@@ -204,18 +204,13 @@
                                     <div class="portlet-body">
                                         <span style="color:red;">${companyMessage}</span>
                                         <spring:form cssClass="form-inline" action="/admin/addCompany"
-                                                     modelAttribute="company" method="post"
-                                                     enctype="multipart/form-data">
+                                                     modelAttribute="company" method="post">
                                             <div class="form-group">
                                                 <spring:input path="name" cssClass="form-control"
                                                               id="exampleInputEmail2"
                                                               placeholder="Enter Company name" required="required"></spring:input>
                                             </div>
                                             <br>
-                                            <div class="form-group">
-                                                <input type="file" class="form-control" id="exampleInputPassword2"
-                                                       name="picture">
-                                            </div>
                                             <input type="submit" class="btn btn-default" value="ADD"></input>
                                         </spring:form>
                                     </div>

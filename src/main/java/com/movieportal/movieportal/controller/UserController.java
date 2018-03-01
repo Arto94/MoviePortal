@@ -50,17 +50,17 @@ public class UserController {
     @PostMapping("/changeUserDetails")
     public String changeUserDetails(@ModelAttribute("user") User user) {
         User principal = userUtil.getPrincipal();
-        if(!user.getPassword().equals("")){
+        if (!user.getPassword().equals("")) {
             principal.setPassword(passwordEncoder.encode(user.getPassword()));
         }
 
-        if(!user.getEmail().equals("")){
+        if (!user.getEmail().equals("")) {
             principal.setEmail(user.getEmail());
         }
-        if(!user.getName().equals("")){
+        if (!user.getName().equals("")) {
             principal.setName(user.getName());
         }
-        if(!user.getSurname().equals("")){
+        if (!user.getSurname().equals("")) {
             principal.setSurname(user.getSurname());
         }
         userRepository.save(principal);
@@ -68,18 +68,11 @@ public class UserController {
     }
 
     @GetMapping("/userFavoriteMovies")
-    public String userFavoriteMovies(ModelMap map,@RequestParam("userId") int userId) {
+    public String userFavoriteMovies(ModelMap map, @RequestParam("userId") int userId) {
         User user = userRepository.findOne(userId);
         map.addAttribute("favoriteMovies", user.getMovies());
         map.addAttribute("user", user);
         return "userfavoritemovie";
-    }
-
-    @GetMapping("/addFavorite")
-    public String addFavorite(ModelMap map,@RequestParam("userId") int userId, @RequestParam("movieId") int movieId) {
-        userRepository.addWish(userId, movieId);
-        map.addAttribute("user",userRepository.findOne(userId));
-        return "redirect:/userFavoriteMovies?userId="+userId;
     }
 
 }

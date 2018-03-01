@@ -35,11 +35,7 @@ public class ActorController {
         return "singleactor";
     }
 
-    @GetMapping("/deleteActor")
-    public String removeActor(@RequestParam("actorId") int id) {
-        actorRepository.delete(actorRepository.findOne(id));
-        return "redirect:/basicTables";
-    }
+
 
     @GetMapping("/searchActor")
     public String searchMovie(ModelMap map,@RequestParam("actorName") String actorName) {

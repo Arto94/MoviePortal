@@ -22,6 +22,4 @@ public class Company {
     @NotEmpty(message = "name is empty")
     private String name;
 
-    @Column
-    private String picture;
 }

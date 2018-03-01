@@ -124,7 +124,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admin/addCompany")
-    public String addCompany(@Valid @ModelAttribute("company") Company company, BindingResult result, @RequestParam("picture") MultipartFile multipartFile) throws IOException {
+    public String addCompany(@Valid @ModelAttribute("company") Company company, BindingResult result) throws IOException {
         int size = 0;
         StringBuilder sb = new StringBuilder();
         if (result.hasErrors()) {
@@ -136,10 +136,6 @@ public class AdminController {
             }
             return "redirect:/admin/basicFormElements?companyMessage=" + sb.toString();
         }
-        String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-        File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
-        multipartFile.transferTo(file);
-        company.setPicture(picName);
         companyRepository.save(company);
         return "redirect:/admin/basicFormElements";
     }
@@ -193,5 +189,34 @@ public class AdminController {
         map.addAttribute("companies", companyRepository.findAll());
         map.addAttribute("admin", userUtil.getPrincipal());
         return "tables";
+    }
+
+    @GetMapping("/admin/deleteCompany")
+    public String deleteCompany(@RequestParam("companyId") int id) {
+        companyRepository.delete(companyRepository.findOne(id));
+        return "redirect:/basicTables";
+    }
+
+    @GetMapping("/admin/deleteDirector")
+    public String deleteDirector(@RequestParam("directorId") int id) {
+        directorRepository.delete(directorRepository.findOne(id));
+        return "redirect:/basicTables";
+    }
+
+    @GetMapping("/admin/deleteGenre")
+    public String deleteGenre(@RequestParam("genreId") int id) {
+        genreRepository.delete(genreRepository.findOne(id));
+        return "redirect:/basicTables";
+    }
+
+    @GetMapping("/admin/deleteMovie")
+    public String deleteMovie(@RequestParam("movieId") int id) {
+        movieRepository.delete(movieRepository.findOne(id));
+        return "redirect:/basicTables";
+    }
+    @GetMapping("/admin/deleteActor")
+    public String removeActor(@RequestParam("actorId") int id) {
+        actorRepository.delete(actorRepository.findOne(id));
+        return "redirect:/basicTables";
     }
 }

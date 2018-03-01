@@ -119,7 +119,7 @@
                                             <td>${actor.name}</td>
                                             <td>${actor.surname}</td>
                                             <td>${actor.age}</td>
-                                            <td><a href="/deleteActor?actorId=${actor.id}">X</a></td>
+                                            <td><a href="/admin/deleteActor?actorId=${actor.id}">X</a></td>
                                         </tr>
                                         </tbody>
                                     </c:forEach>
@@ -153,7 +153,7 @@
                                             <tbody>
                                             <tr>
                                                 <td>${companie.name}</td>
-                                                <td><a href="/deleteCompany?companyId=${companie.id}">X</a></td>
+                                                <td><a href="/admin/deleteCompany?companyId=${companie.id}">X</a></td>
                                             </tr>
                                             </tbody>
                                         </c:forEach>
@@ -187,7 +187,7 @@
                                         <tbody>
                                         <tr>
                                             <td>${user.name}</td>
-                                            <td><a href="/deleteDirector?directorId=${user.id}">X</a></td>
+                                            <td><a href="/admin/deleteDirector?directorId=${user.id}">X</a></td>
                                         </tr>
                                         </tbody>
                                     </c:forEach>
@@ -219,7 +219,7 @@
                                         <tbody>
                                         <tr>
                                             <td>${user.name}</td>
-                                            <td><a href="/deleteGenre?genreId=${user.id}">X</a></td>
+                                            <td><a href="/admin/deleteGenre?genreId=${user.id}">X</a></td>
                                         </tr>
                                         </tbody>
                                     </c:forEach>
@@ -253,7 +253,7 @@
                                         <tr>
                                             <td>${movie.title}</td>
                                             <td><img src="/image?fileName=${movie.picture} " style="height: 90px "></td>
-                                            <td><a href="/deleteMovie?movieId=${movie.id}">X</a></td>
+                                            <td><a href="/admin/deleteMovie?movieId=${movie.id}">X</a></td>
                                         </tr>
                                         </tbody>
                                     </c:forEach>

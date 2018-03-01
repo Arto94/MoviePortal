@@ -98,7 +98,7 @@
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct main-content">
                     <h1 class="bd-hd">${singleMovie.title} <span>${singleMovie.year}</span></h1>
-                    <c:if test="${currentUser != null}&&${!favorite}">
+                    <c:if test="${currentUser != null}">
                         <div class="social-btn">
                             <a href="/addFavorite?userId=${currentUser.id}&movieId=${singleMovie.id}"
                                class="parent-btn"><i class="ion-heart"></i>

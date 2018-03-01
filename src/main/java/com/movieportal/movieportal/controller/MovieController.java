@@ -2,9 +2,12 @@ package com.movieportal.movieportal.controller;
 
 
 import com.movieportal.movieportal.model.Movie;
+import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.security.CurrentUser;
+import com.movieportal.movieportal.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -28,11 +31,13 @@ public class MovieController {
     private DirectorRepository directorRepository;
     @Autowired
     private GenreRepository genreRepository;
+    @Autowired
+    private UserUtil userUtil;
 
     @GetMapping("/movies")
     public String allMovies(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
         map.addAttribute("movies", movieRepository.findAll());
-        map.addAttribute("errorMessage", errorMessage!=null ? errorMessage : "");
+        map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
         return "moviegridfw";
     }
 
@@ -48,40 +53,28 @@ public class MovieController {
         return "moviesingle";
     }
 
-    @GetMapping("/deleteCompany")
-    public String deleteCompany(@RequestParam("companyId") int id) {
-        companyRepository.delete(companyRepository.findOne(id));
-        return "redirect:/basicTables";
-    }
-
-    @GetMapping("/deleteDirector")
-    public String deleteDirector(@RequestParam("directorId") int id) {
-        directorRepository.delete(directorRepository.findOne(id));
-        return "redirect:/basicTables";
-    }
-
-    @GetMapping("/deleteGenre")
-    public String deleteGenre(@RequestParam("genreId") int id) {
-        genreRepository.delete(genreRepository.findOne(id));
-        return "redirect:/basicTables";
-    }
-
-    @GetMapping("/deleteMovie")
-    public String deleteMovie(@RequestParam("movieId") int id) {
-        movieRepository.delete(movieRepository.findOne(id));
-        return "redirect:/basicTables";
+    @GetMapping("/addFavorite")
+    public String addFavoriteMovie(@RequestParam("userId") int userId, @RequestParam("movieId") int movieId) {
+        User one = userRepository.findOne(userId);
+        boolean contains = one.getMovies().contains(movieRepository.findById(movieId));
+        if (!contains) {
+            userRepository.addWish(userId, movieId);
+            return "redirect:/userFavoriteMovies?userId=" + userId;
+        } else {
+            return "redirect:/moviesingle?movieId=" + movieId;
+        }
     }
 
     @GetMapping("/searchMovie")
-    public String searchMovie(ModelMap map,@RequestParam("filmName") String filmName) {
+    public String searchMovie(ModelMap map, @RequestParam("filmName") String filmName) {
         Movie movie = movieRepository.findByTitle(filmName);
         if (movie != null) {
             return "redirect:/moviesingle?movieId=" + movie.getId();
         } else {
             List<Movie> movies = movieRepository.findAllByTitleContaining(filmName);
-            if(movies.size()==0){
+            if (movies.size() == 0) {
                 return "redirect:/movies?errorMessage=No Film in this Name";
-            }else {
+            } else {
                 map.addAttribute("movies", movies);
                 return "moviegridfw";
             }
