@@ -23,7 +23,7 @@
           rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
           rel="stylesheet" type="text/css">
-    <link href="../icons/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
 
     <!-- PAGE LEVEL PLUGIN STYLES -->
     <link href="../css/plugins/messenger/messenger.css" rel="stylesheet">
@@ -127,7 +127,7 @@
                     <div class="circle-tile">
 
                             <div class="circle-tile-heading dark-blue">
-                                <i class="fa fa-users fa-fw fa-3x"></i>
+                                <i class="fa fa-user fa-fw fa-3x"></i>
                             </div>
 
                         <div class="circle-tile-content dark-blue">
@@ -144,7 +144,7 @@
                     <div class="circle-tile">
 
                             <div class="circle-tile-heading green">
-                                <i class="fa fa-money fa-fw fa-3x"></i>
+                                <i class="fa fa-film fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content green">
                             <div class="circle-tile-description text-faded">
@@ -160,7 +160,7 @@
                     <div class="circle-tile">
 
                             <div class="circle-tile-heading orange">
-                                <i class="fa fa-bell fa-fw fa-3x"></i>
+                                <i class="fa fa-video fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content orange">
                             <div class="circle-tile-description text-faded">
@@ -175,7 +175,7 @@
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
                             <div class="circle-tile-heading blue">
-                                <i class="fa fa-tasks fa-fw fa-3x"></i>
+                                <i class="fas fa-user-secret fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content blue">
                             <div class="circle-tile-description text-faded">
@@ -185,7 +185,7 @@
                                 ${actorCount}
                                 <span id="sparklineB"></span>
                             </div>
-
+                             a
                         </div>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
                             <div class="circle-tile-heading purple">
-                                <i class="fa fa-comments fa-fw fa-3x"></i>
+                                <i class="fa fa-building fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content purple">
                             <div class="circle-tile-description text-faded">
