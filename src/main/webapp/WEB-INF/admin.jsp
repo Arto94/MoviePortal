@@ -127,7 +127,7 @@
                     <div class="circle-tile">
 
                             <div class="circle-tile-heading dark-blue">
-                                <i class="fa fa-user fa-fw fa-3x"></i>
+                                <i class="fa fa-users fw fa-3x"></i>
                             </div>
 
                         <div class="circle-tile-content dark-blue">
@@ -160,7 +160,7 @@
                     <div class="circle-tile">
 
                             <div class="circle-tile-heading orange">
-                                <i class="fa fa-video fa-fw fa-3x"></i>
+                                <i class="fa fa-ticket fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content orange">
                             <div class="circle-tile-description text-faded">
@@ -175,7 +175,7 @@
                 <div class="col-lg-2 col-sm-6">
                     <div class="circle-tile">
                             <div class="circle-tile-heading blue">
-                                <i class="fas fa-user-secret fa-fw fa-3x"></i>
+                                <i class="fa fa-user-md fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content blue">
                             <div class="circle-tile-description text-faded">
@@ -192,7 +192,7 @@
                     <div class="circle-tile">
 
                             <div class="circle-tile-heading red">
-                                <i class="fa fa-shopping-cart fa-fw fa-3x"></i>
+                                <i class="fa fa-user fa-fw fa-3x"></i>
                             </div>
                         <div class="circle-tile-content red">
                             <div class="circle-tile-description text-faded">
