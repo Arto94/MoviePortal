@@ -51,24 +51,16 @@
                 <!-- begin SIDE NAV USER PANEL -->
                 <li class="side-user hidden-xs">
                     <img class="img-circle" src="/image?fileName=${admin.picUrl}" alt="">
-                    <p class="welcome">
-                        <i class="fa fa-key"></i> Logged in as
-                    </p>
                     <p class="name tooltip-sidebar-logout">
                         ${admin.name}
                         <span class="last-name">${admin.surname}</span>
                     </p>
                 </li>
-
                 <li class="panel">
-                    <a href="javascript:" data-parent="#side" data-toggle="collapse" class="accordion-toggle"
-                       data-target="#forms">
-                        <i class="fa fa-edit"></i> Forms <i class="fa fa-caret-down"></i>
-                    </a>
                     <ul class="collapse nav" id="forms">
                         <li>
                             <a href="/admin/basicFormElements">
-                                <i class="fa fa-angle-double-right"></i> Basic Elements
+                               All Elements
                             </a>
                         </li>
                     </ul>
@@ -76,7 +68,7 @@
                 <li class="panel">
                     <a href="/admin" data-parent="#side" data-toggle="collapse" class="accordion-toggle"
                        data-target="#forms">
-                        <i class="fa fa-edit"></i> Home Page<i class="fa fa-caret-down"></i>
+                        Home Page
                     </a>
                 </li>
                 <!-- end FORMS DROPDOWN -->

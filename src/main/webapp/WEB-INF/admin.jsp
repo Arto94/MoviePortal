@@ -79,33 +79,20 @@
                 <!-- begin SIDE NAV USER PANEL -->
                 <li class="side-user hidden-xs">
                     <img class="img-circle" src="/image?fileName=${user.picUrl}" alt="">
-                    <p class="welcome">
-                        <i class="fa fa-key"></i> Logged in as
-                    </p>
                     <p class="name tooltip-sidebar-logout">
                         ${user.name}
                         <span class="last-name">${user.surname}</span>
                     </p>
                 </li>
-
                 <li class="panel">
-                    <a href="javascript:" data-parent="#side" data-toggle="collapse" class="accordion-toggle"
-                       data-target="#forms">
-                        <i class="fa fa-edit"></i> Forms <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="collapse nav" id="forms">
-                        <li>
                             <a href="/admin/basicFormElements">
-                                <i class="fa fa-angle-double-right"></i> Basic Elements
+                                Basic Elements
                             </a>
-                        </li>
-                    </ul>
                 </li>
-
                 <li class="panel">
                     <a href="/home" data-parent="#side" data-toggle="collapse" class="accordion-toggle"
                        data-target="#forms">
-                        <i class="fa fa-edit"></i> Home Page<i class="fa fa-caret-down"></i>
+                        Home Page
                     </a>
                 </li>
                 <li class="panel">
@@ -117,12 +104,9 @@
                 <li class="panel">
                     <a href="/logout" data-parent="#side" data-toggle="collapse" class="accordion-toggle"
                        data-target="#forms">
-                        <i class="fa fa-edit"></i> Log Out<i class="fa fa-caret-down"></i>
+                         Log Out
                     </a>
                 </li>
-                <!-- end TABLES DROPDOWN --><!-- end MESSAGE CENTER DROPDOWN -->
-
-                <!-- end PAGES DROPDOWN -->
             </ul>
             <!-- /.side-nav -->
         </div>
