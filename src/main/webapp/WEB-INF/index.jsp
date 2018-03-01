@@ -196,7 +196,7 @@
             <div class="col-md-12">
                 <div class="title-hd">
                     <h2>in theater</h2>
-                    <a href="index.html#" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+                    <a href="/movies" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
                 </div>
                 <div class="videos">
                     <div class="slider-for-2 video-ft">

@@ -1,6 +1,7 @@
 package com.movieportal.movieportal.controller;
 
 
+import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.MovieRepository;
 import com.movieportal.movieportal.security.CurrentUser;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 @Controller
 public class MainController {
@@ -29,7 +33,27 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-        map.addAttribute("movies", movieRepository.findAll());
+
+        List<Movie> movies = movieRepository.findAll();
+        if(movies.size()<5){
+            map.addAttribute("movies",movies);
+        }else {
+            Random random = new Random();
+            int index = random.nextInt(movies.size()-1);
+
+            List<Movie> selectMovies = new ArrayList<>();
+            for (int i = 0; i < 5;index++, i++) {
+                selectMovies.add(movies.get(index));
+                if(index == movies.size()-1) {
+                    index = 0;
+                }
+            }
+            map.addAttribute("movies", selectMovies);
+
+        }
+
+
+
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
