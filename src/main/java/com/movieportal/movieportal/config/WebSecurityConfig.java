@@ -30,8 +30,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
 //                .antMatchers("/register/**").permitAll()
                 .antMatchers("/userProfile/**").hasAuthority("USER")
-//                .anyRequest().fullyAuthenticated()
-
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -44,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
-
 //                .deleteCookies("remember-me")
 //                .permitAll()
                 .and()

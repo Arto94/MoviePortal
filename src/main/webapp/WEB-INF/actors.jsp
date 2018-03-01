@@ -65,8 +65,8 @@
     <div style="margin-left: 150px" class="top-search">
         <form action="/searchActor">
             <label for="searches"><p style="color: #BD081C">Actor Name</p></label>
-            <input id="searches" name="actorName" type="text" placeholder="Search for a movie">
-            <button type="submit">Search</button>
+            <input id="searches" name="actorName" type="text" placeholder="Search for a actor">
+            <button class="btn btn-search" type="submit">Search</button>
         </form>
     </div>
 </header>

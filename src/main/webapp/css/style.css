@@ -8284,3 +8284,13 @@ footer.full-width-ft .ft-copyright {
   font-family: 'Dosis', sans-serif;
   font-weight: 700;
 }
+
+
+.btn-search {
+  background: #2082a5;
+  border-radius: 0;
+  color: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color:#2082a5;
+}

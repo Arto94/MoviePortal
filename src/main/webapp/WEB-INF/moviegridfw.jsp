@@ -72,12 +72,12 @@
                    <option  value="${genre.id}">${genre.name}</option>
                    </c:forEach>
                </select>
-               <button type="submit">Search</button>
+               <button class="btn btn-search" type="submit">Search</button>
            </spring:form>
             <form action="/searchMovie" style="margin-left: 75%">
                 <label for="searches"><p style="color: #BD081C">Movie Name</p></label>
                 <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
-                <button type="submit">Search</button>
+                <button class="btn btn-search" type="submit">Search</button>
             </form>
         </div>
     </div>
