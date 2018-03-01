@@ -7938,7 +7938,7 @@ header .top-search input {
   text-transform: none;
 }
 header .top-search select {
-  width: 20%;
+  width: 150%;
   border-right: 1px solid #020d18;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -7951,7 +7951,6 @@ header .top-search input::-webkit-input-placeholder {
   color: #abb7c4;
 }
 header .top-search input {
-  background: url('../images/uploads/topsearch.png') no-repeat right 20px center;
 }
 header #nav-icon1 {
   width: 15px;

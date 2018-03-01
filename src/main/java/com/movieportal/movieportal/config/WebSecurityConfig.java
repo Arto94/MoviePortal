@@ -42,11 +42,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/");
+                .logoutSuccessUrl("/")
 //                .deleteCookies("remember-me")
 //                .permitAll()
-//                .and()
-//                .rememberMe();
+                .and()
+                .rememberMe();
     }
 
     @Autowired

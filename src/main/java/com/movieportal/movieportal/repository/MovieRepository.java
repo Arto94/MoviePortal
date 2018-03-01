@@ -2,6 +2,7 @@ package com.movieportal.movieportal.repository;
 
 
 import com.movieportal.movieportal.model.Actor;
+import com.movieportal.movieportal.model.Genre;
 import com.movieportal.movieportal.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -16,4 +17,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findAllByTitleContaining(String word);
 
     Movie findById(int movieId);
+
+    List<Movie> findAllByMovieGenresIsContaining(Genre genre);
 }

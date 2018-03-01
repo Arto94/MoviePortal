@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -64,11 +65,20 @@
         <!-- top search form -->
         <span style="color:red;">${errorMessage}</span>
         <div class="top-search">
-           <form action="/searchMovie">
-               <label for="searches"><p style="color: #BD081C">Movie Name</p></label>
-               <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
+           <spring:form action="/selectByGenre" method="get" modelAttribute="genre">
+               <label for="searches"><p style="color: #BD081C">Select genre</p></label>
+               <select name="genreid" >
+                   <c:forEach items="${genres}" var="genre">
+                   <option  value="${genre.id}">${genre.name}</option>
+                   </c:forEach>
+               </select>
                <button type="submit">Search</button>
-           </form>
+           </spring:form>
+            <form action="/searchMovie" style="margin-left: 75%">
+                <label for="searches"><p style="color: #BD081C">Movie Name</p></label>
+                <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
+                <button type="submit">Search</button>
+            </form>
         </div>
     </div>
 </header>
@@ -123,7 +133,6 @@
                         </div>
                         </c:forEach>
                     </div>
-
                 <div class="topbar-filter">
                     <label>Movies per page:</label>
                     <select>

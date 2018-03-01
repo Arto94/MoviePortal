@@ -57,13 +57,13 @@
             <div class="row">
                 <label>
                     Password:
-                    <spring:password path="password" name="password"/>
+                    <spring:password path="password" name="password" required="required"/>
                 </label>
             </div>
             <div class="row">
                 <div class="remember">
                     <div>
-                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+                        <input type="checkbox" name="remember" value="Remember me" required="required"><span>Remember me</span>
                     </div>
                         <%--<a href="index.html#">Forget password ?</a>--%>
                 </div>

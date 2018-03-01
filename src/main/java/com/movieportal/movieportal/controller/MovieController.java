@@ -1,6 +1,7 @@
 package com.movieportal.movieportal.controller;
 
 
+import com.movieportal.movieportal.model.Genre;
 import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.*;
@@ -13,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -38,6 +40,8 @@ public class MovieController {
     public String allMovies(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
         map.addAttribute("movies", movieRepository.findAll());
         map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
+        map.addAttribute("genres",genreRepository.findAll());
+        map.addAttribute("genre",new Genre());
         return "moviegridfw";
     }
 
@@ -79,5 +83,14 @@ public class MovieController {
                 return "moviegridfw";
             }
         }
+    }
+
+    @GetMapping("/selectByGenre")
+    public String selectMoviesByGenre(ModelMap map,@ModelAttribute("genreid") int genreId) {
+        Genre one = genreRepository.findOne(genreId);
+        map.addAttribute("movies",movieRepository.findAllByMovieGenresIsContaining(one));
+        map.addAttribute("genres",genreRepository.findAll());
+        return "moviegridfw";
+
     }
 }
