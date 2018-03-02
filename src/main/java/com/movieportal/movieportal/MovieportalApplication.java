@@ -2,8 +2,11 @@ package com.movieportal.movieportal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -42,5 +45,13 @@ public class MovieportalApplication extends WebMvcConfigurerAdapter {
         factory.setMaxFileSize("1024KB");
         factory.setMaxRequestSize("1024KB");
         return factory.createMultipartConfig();
+    }
+
+    @Bean
+    public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
+        return (container -> {
+            ErrorPage custom404 = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
+            container.addErrorPages(custom404);
+        });
     }
 }

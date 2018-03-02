@@ -56,6 +56,10 @@ public class MainController {
     public String redirectHome() {
         return "redirect:/home";
     }
+    @GetMapping("/404")
+    public String Page404(){
+        return "404";
+    }
 
 }
 
