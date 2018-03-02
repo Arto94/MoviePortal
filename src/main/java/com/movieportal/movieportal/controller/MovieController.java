@@ -23,6 +23,8 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepository;
     @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
     private UserRepository userRepository;
 
     @Autowired
@@ -35,8 +37,8 @@ public class MovieController {
     public String allMovies(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
         map.addAttribute("movies", movieRepository.findAll());
         map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
-        map.addAttribute("genres",genreRepository.findAll());
-        map.addAttribute("genre",new Genre());
+        map.addAttribute("genres", genreRepository.findAll());
+        map.addAttribute("genre", new Genre());
         return "moviegridfw";
     }
 
@@ -48,11 +50,11 @@ public class MovieController {
             map.addAttribute("currentUser", principal.getUser());
         }
         Movie single = movieRepository.findOne(id);
-        if(single!=null) {
+        if (single != null) {
             map.addAttribute("singleMovie", single);
             return "moviesingle";
-        }else{
-            map.addAttribute("message","Movie Not Found");
+        } else {
+            map.addAttribute("message", "Movie Not Found");
             return "404";
         }
     }
@@ -86,17 +88,34 @@ public class MovieController {
     }
 
     @GetMapping("/selectByGenre")
-    public String selectMoviesByGenre(ModelMap map,@ModelAttribute("genreid") int genreId) {
+    public String selectMoviesByGenre(ModelMap map, @ModelAttribute("genreid") int genreId) {
         Genre genre = genreRepository.findOne(genreId);
-        if(genre!=null) {
+        if (genre != null) {
             map.addAttribute("movies", movieRepository.findAllByMovieGenresIsContaining(genre));
             map.addAttribute("genres", genreRepository.findAll());
             return "moviegridfw";
-        }else{
-            map.addAttribute("message","Genre Not Found");
+        } else {
+            map.addAttribute("message", "Genre Not Found");
             return "404";
         }
     }
 
+    @GetMapping("/movieComment")
+    public String movieCommentPage(@RequestParam("movieId") int id, ModelMap map) {
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
+            CurrentUser principal  = (CurrentUser) authentication.getPrincipal();
+            map.addAttribute("currentUser", principal.getUser());
+        }
+        Movie single = movieRepository.findOne(id);
+        if (single != null) {
+            map.addAttribute("singleMovie", single);
+            map.addAttribute("comments",commentRepository.findAllByMovieId(single.getId()));
+            return "moveiCommentPage";
+        } else {
+            map.addAttribute("message", "Movie Not Found");
+            return "404";
+        }
+    }
 }

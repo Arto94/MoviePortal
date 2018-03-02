@@ -116,7 +116,7 @@
                     <div class="movie-tabs">
                         <div class="tabs">
                             <ul class="tab-links tabs-mv">
-                                <li><a href="/movieComment?movieId=${singleMovie.id}"> Reviews</a></li>
+                                <li><a href="/moviesingle?movieId=${singleMovie.id}"> Movie page</a></li>
                                 <li><a href="moviesingle.jsp#cast"> Cast & Crew </a></li>
                             </ul>
                             <div class="tab-content">
@@ -125,104 +125,74 @@
                                         <div class="col-md-8 col-sm-12 col-xs-12">
                                             <p>${singleMovie.description}</p>
                                             <div class="title-hd-sm">
-                                                <h4>cast</h4>
-                                                <a href="moviesingle.jsp#" class="time">Full Cast & Crew <i
-                                                        class="ion-ios-arrow-right"></i></a>
                                             </div>
                                             <!-- movie cast -->
 
                                             <div class="mvcast-item">
-                                                <c:forEach items="${singleMovie.movieActors}" var="actor">
-                                                    <div class="cast-it">
-                                                        <div class="cast-left">
-                                                            <img src="/image?fileName=${actor.pic}" alt="e">
-                                                            <a href="/singleActor?actorId=${actor.id}">${actor.name}</a>
-                                                        </div>
-                                                    </div>
+                                                <c:forEach items="${comments}" var="comment">
+                                                <div>
+                                                    UserName: <h3>${comment.user.name} ${comment.user.surname} </h3>
+                                                    Comment: <p>${comment.message}</p>
+                                                </div>
                                                 </c:forEach>
-                                            </div>
-                                            <div class="title-hd-sm">
-                                                <h4>User reviews</h4>
-                                                <a href="moviesingle.jsp#" class="time">See All 56 Reviews <i
-                                                        class="ion-ios-arrow-right"></i></a>
-                                            </div>
-                                            <!-- movie user review -->
-                                        </div>
-                                        <div class="col-md-4 col-xs-12 col-sm-12">
+                                                <div class="title-hd-sm">
 
-                                            <div class="sb-it">
-                                                <h6>Director: </h6>
-                                                <c:forEach items="${singleMovie.movieDirectors}" var="director">
-                                                    <p>${director.name}&nbsp;${director.surname}</p>
-                                                </c:forEach>
+                                                </div>
+                                                <!-- movie user review -->
                                             </div>
-                                            <div class="sb-it">
-                                                <h6>Stars: </h6>
-                                                <c:forEach items="${singleMovie.movieActors}" var="actor">
+                                            <div class="col-md-4 col-xs-12 col-sm-12">
 
-                                                    <p>
-                                                        <a href="/singleActor?actorId=${actor.id}">${actor.name}&nbsp;${actor.surname} </a>
-                                                    </p>
-                                                </c:forEach>
-                                            </div>
+                                                <div >
+                                                    <form class="addCommentText">
+                                                        <textarea  style="height: 250px"></textarea>
+                                                        <input type="submit" value="ADD">
+                                                    </form>
+                                                </div>
 
 
-                                            <div class="sb-it">
-                                                <h6>Genres:</h6>
-                                                <c:forEach items="${singleMovie.movieGenres}" var="genre">
-                                                    <p>${genre.name}</p>
-                                                </c:forEach>
-                                            </div>
-
-                                            <div class="sb-it">
-                                                <h6>Release Date:</h6>
-                                                <p>${singleMovie.year} (${singleMovie.country})</p>
-                                            </div>
-                                            <div class="sb-it">
-                                                <h6>Run Time:</h6>
-                                                <p>${singleMovie.movieTime} min</p>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div id="reviews" class="tab review">
-                                    <div class="row">
-                                        <div class="rv-hd">
-                                            <div class="div">
-                                                <h3>Related Movies To</h3>
-                                                <h2>Skyfall: Quantum of Spectre</h2>
-                                            </div>
-                                            <a href="moviesingle.jsp#" class="redbtn">Write Review</a>
-                                        </div>
-                                        <div class="mv-user-review-item ">
-                                            <div class="user-infor">
-                                                <img src="../images/uploads/userava4.jpg" alt="">
-                                                <div>
-                                                    <h3>That spirit of fun</h3>
-                                                    <p class="time">
-                                                        26 March 2017 by <a href="moviesingle.jsp#"> juliawest</a>
-                                                    </p>
+                                    <div id="reviews" class="tab review">
+                                        <div class="row">
+                                            <div class="rv-hd">
+                                                <div class="div">
+                                                    <h3>Related Movies To</h3>
+                                                    <h2>Skyfall: Quantum of Spectre</h2>
                                                 </div>
+                                                <a href="moviesingle.jsp#" class="redbtn">Write Review</a>
                                             </div>
-                                            <p>If there were not an audience for Marvel comic heroes than clearly these
-                                                films would not be made, to answer one other reviewer although I
-                                            </p>
-                                        </div>
-                                        <div class="topbar-filter">
-                                            <label>Reviews per page:</label>
-                                            <select>
-                                                <option value="range">5 Reviews</option>
-                                                <option value="saab">10 Reviews</option>
-                                            </select>
-                                            <div class="pagination2">
-                                                <span>Page 1 of 6:</span>
-                                                <a class="active" href="moviesingle.jsp#">1</a>
-                                                <a href="moviesingle.jsp#">2</a>
-                                                <a href="moviesingle.jsp#">3</a>
-                                                <a href="moviesingle.jsp#">4</a>
-                                                <a href="moviesingle.jsp#">5</a>
-                                                <a href="moviesingle.jsp#">6</a>
-                                                <a href="moviesingle.jsp#"><i class="ion-arrow-right-b"></i></a>
+                                            <div class="mv-user-review-item ">
+                                                <div class="user-infor">
+                                                    <img src="../images/uploads/userava4.jpg" alt="">
+                                                    <div>
+                                                        <h3>That spirit of fun</h3>
+                                                        <p class="time">
+                                                            26 March 2017 by <a href="moviesingle.jsp#"> juliawest</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <p>If there were not an audience for Marvel comic heroes than clearly
+                                                    these
+                                                    films would not be made, to answer one other reviewer although I
+                                                </p>
+                                            </div>
+                                            <div class="topbar-filter">
+                                                <label>Reviews per page:</label>
+                                                <select>
+                                                    <option value="range">5 Reviews</option>
+                                                    <option value="saab">10 Reviews</option>
+                                                </select>
+                                                <div class="pagination2">
+                                                    <span>Page 1 of 6:</span>
+                                                    <a class="active" href="moviesingle.jsp#">1</a>
+                                                    <a href="moviesingle.jsp#">2</a>
+                                                    <a href="moviesingle.jsp#">3</a>
+                                                    <a href="moviesingle.jsp#">4</a>
+                                                    <a href="moviesingle.jsp#">5</a>
+                                                    <a href="moviesingle.jsp#">6</a>
+                                                    <a href="moviesingle.jsp#"><i class="ion-arrow-right-b"></i></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -234,7 +204,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </div>
 <footer class="ht-footer">

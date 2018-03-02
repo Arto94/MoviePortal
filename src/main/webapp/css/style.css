@@ -6342,8 +6342,8 @@ ul {
   border-bottom: 0;
 }
 .movie-single .sb-it {
-  margin-bottom: 30px;
-  margin-left: 30px;
+  margin-top: -300px;
+  margin-left: 600px;
 }
 @media (max-width: 991px) {
   .movie-single .sb-it {
@@ -8317,4 +8317,11 @@ footer.full-width-ft .ft-copyright {
   background: #fff;
   border: 2px solid #535353;
   color: #000;
+}
+
+.addCommentText{
+  width: 300px;
+  height: 600px;
+  margin-left: 500px;
+  margin-top: -300px;
 }
