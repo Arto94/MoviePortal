@@ -1,21 +1,16 @@
 package com.movieportal.movieportal.controller;
 
-import com.movieportal.movieportal.model.Movie;
+
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.model.UserType;
 import com.movieportal.movieportal.repository.*;
-import com.movieportal.movieportal.security.CurrentUser;
 import com.movieportal.movieportal.util.UserUtil;
-import org.hibernate.validator.constraints.URL;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
-import java.util.List;
 
 @Controller
 public class UserController {

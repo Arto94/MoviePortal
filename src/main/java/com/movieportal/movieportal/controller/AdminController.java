@@ -3,10 +3,8 @@ package com.movieportal.movieportal.controller;
 
 import com.movieportal.movieportal.model.*;
 import com.movieportal.movieportal.repository.*;
-import com.movieportal.movieportal.security.CurrentUser;
 import com.movieportal.movieportal.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -214,9 +212,11 @@ public class AdminController {
         movieRepository.delete(movieRepository.findOne(id));
         return "redirect:/basicTables";
     }
+
     @GetMapping("/admin/deleteActor")
     public String removeActor(@RequestParam("actorId") int id) {
         actorRepository.delete(actorRepository.findOne(id));
         return "redirect:/basicTables";
     }
+
 }

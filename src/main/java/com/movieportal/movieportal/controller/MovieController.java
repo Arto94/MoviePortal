@@ -6,9 +6,7 @@ import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.security.CurrentUser;
-import com.movieportal.movieportal.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,12 +27,9 @@ public class MovieController {
 
     @Autowired
     CompanyRepository companyRepository;
-    @Autowired
-    private DirectorRepository directorRepository;
+
     @Autowired
     private GenreRepository genreRepository;
-    @Autowired
-    private UserUtil userUtil;
 
     @GetMapping("/movies")
     public String allMovies(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {

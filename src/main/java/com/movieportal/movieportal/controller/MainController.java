@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+
 
 @Controller
 public class MainController {
@@ -33,7 +31,7 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-            List<Movie> movies = movieRepository.findAll().subList(1, 5);
+            List<Movie> movies = movieRepository.findAll().subList(1, 4);
             map.addAttribute("movies", movies);
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -56,11 +54,11 @@ public class MainController {
     public String redirectHome() {
         return "redirect:/home";
     }
+
     @GetMapping("/404")
     public String Page404(){
         return "404";
     }
-
 }
 
 
