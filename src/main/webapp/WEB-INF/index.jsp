@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="remember">
                     <div>
-                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+                        <input type="checkbox" name="remember-me" ><span>Remember me</span>
                     </div>
                 </div>
             </div>
