@@ -11,7 +11,7 @@
     <meta name="author" content="">
 
     <title>Flex Admin - Responsive Admin Theme</title>
-
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <!-- PACE LOAD BAR PLUGIN - This creates the subtle load bar effect at the top of the page. -->
     <link href="../css/pace.css" rel="stylesheet" type="text/css">
     <link href="../css/fontcc.css" rel="stylesheet" type="text/css">
@@ -233,7 +233,11 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="row">
-
+                        <div id="calendar">
+                            <div id="calendar_header"><i class="icon-chevron-left"></i>          <h1></h1><i class="icon-chevron-right"></i>         </div>
+                            <div id="calendar_weekdays"></div>
+                            <div id="calendar_content"></div>
+                        </div>
 
                     </div>
                 </div>
