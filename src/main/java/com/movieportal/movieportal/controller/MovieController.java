@@ -1,6 +1,7 @@
 package com.movieportal.movieportal.controller;
 
 
+import com.movieportal.movieportal.model.Comment;
 import com.movieportal.movieportal.model.Genre;
 import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -112,10 +114,24 @@ public class MovieController {
         if (single != null) {
             map.addAttribute("singleMovie", single);
             map.addAttribute("comments",commentRepository.findAllByMovieId(single.getId()));
+            map.addAttribute("modelComment",new Comment());
             return "moveiCommentPage";
         } else {
             map.addAttribute("message", "Movie Not Found");
             return "404";
         }
+    }
+
+    @PostMapping("/addComment")
+    public String addComment(@ModelAttribute("modelComment") Comment comment) {
+        System.out.println(comment);
+        commentRepository.save(comment);
+        return "redirect:/movieComment?movieId="+comment.getMovie().getId();
+    }
+
+    @GetMapping("/getMovieComments")
+    public String getMovieComments(ModelMap map,@RequestParam("movieId") int movieId) {
+        map.addAttribute("comments",commentRepository.findAllByMovieId(movieId));
+        return ".getMovieComments";
     }
 }

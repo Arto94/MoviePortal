@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -128,7 +129,7 @@
                                             </div>
                                             <!-- movie cast -->
 
-                                            <div class="mvcast-item">
+                                            <div id="movieComments" class="mvcast-item">
                                                 <c:forEach items="${comments}" var="comment">
                                                 <div>
                                                     UserName: <h3>${comment.user.name} ${comment.user.surname} </h3>
@@ -141,17 +142,20 @@
                                                 <!-- movie user review -->
                                             </div>
                                             <div class="col-md-4 col-xs-12 col-sm-12">
-
+                                            </div>
+                                                <c:if test="${currentUser != null}">
                                                 <div >
-                                                    <form class="addCommentText">
-                                                        <textarea  style="height: 250px"></textarea>
+                                                    <spring:form action="/addComment" method="post" modelAttribute="modelComment"  cssClass="addCommentText">
+                                                        <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
+                                                        <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
+                                                        <spring:input path="movie" type="hidden" value="${singleMovie.id}" name="movie" ></spring:input>
                                                         <input type="submit" value="ADD">
-                                                    </form>
+                                                    </spring:form>
                                                 </div>
-
+                                                </c:if>
 
                                             </div>
-                                        </div>
+
                                     </div>
                                     <div id="reviews" class="tab review">
                                         <div class="row">
@@ -230,15 +234,15 @@
 <!-- end of footer section-->
 
 <script>
-    function getMessages(movieId) {
-        $("#movie").val(movieid);
+    setInterval(function () {
         $.ajax({
-            url: "http://localhost:8080/getMessage?movieId=" + movieId,
-            success: function (data) {
-                $("#message").html(data);
+            url: "http://localhost:8080/getMovieComments?movieId${singleMovie.id}",
+            success: function (result) {
+                $("#movieComments").jsp(result);
             }
-        })
-    }
+        });
+    }, 2000);
+
 </script>
 
 <script src="../js/jquery.js"></script>
