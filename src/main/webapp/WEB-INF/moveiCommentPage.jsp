@@ -236,12 +236,12 @@
 <script>
     setInterval(function () {
         $.ajax({
-            url: "http://localhost:8080/getMovieComments?movieId${singleMovie.id}",
+            url: "http://localhost:8080/getMovieComments?movieId=${singleMovie.id}",
             success: function (result) {
-                $("#movieComments").jsp(result);
+                $("#movieComments").html(result);
             }
         });
-    }, 2000);
+    }, 6000);
 
 </script>
 

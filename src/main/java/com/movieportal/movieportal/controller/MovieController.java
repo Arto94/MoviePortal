@@ -130,8 +130,8 @@ public class MovieController {
     }
 
     @GetMapping("/getMovieComments")
-    public String getMovieComments(ModelMap map,@RequestParam("movieId") int movieId) {
-        map.addAttribute("comments",commentRepository.findAllByMovieId(movieId));
-        return ".getMovieComments";
+    public String getMovieComments(ModelMap map,@RequestParam("movieId") int id) {
+        map.addAttribute("comments", commentRepository.findAllByMovieId(id));
+        return "getMovieComments";
     }
 }
