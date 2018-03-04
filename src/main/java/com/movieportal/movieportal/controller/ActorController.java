@@ -4,7 +4,10 @@ import com.movieportal.movieportal.model.Actor;
 import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.repository.ActorRepository;
 import com.movieportal.movieportal.repository.MovieRepository;
+import com.movieportal.movieportal.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +26,11 @@ public class ActorController {
     public String getActors(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
         map.addAttribute("actors", actorRepository.findAll());
         map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
+            CurrentUser principal = (CurrentUser) authentication.getPrincipal();
+            map.addAttribute("currentUser", principal.getUser());
+        }
         return "actors";
     }
 

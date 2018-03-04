@@ -85,7 +85,7 @@
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="user-information">
                     <div class="user-img">
-                        <a href="userprofile.jsp#"><img src="/image?fileName=${user.picUrl}" alt=""><br></a>
+                        <img src="/image?fileName=${user.picUrl}" width="220px" height="250px" alt=""><br>
                     </div>
                     <div class="user-fav">
                         <p>Account Details</p>

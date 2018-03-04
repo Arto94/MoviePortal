@@ -110,7 +110,6 @@
                         <div class="rate">
                             <i class="ion-android-star"></i>
                             <p><span>8.1</span> /10<br>
-                                <span class="rv">56 Reviews</span>
                             </p>
                         </div>
                     </div>
@@ -130,12 +129,20 @@
                                             <!-- movie cast -->
 
                                             <div id="movieComments" class="mvcast-item">
-                                                <c:forEach items="${comments}" var="comment">
-                                                <div>
-                                                    UserName: <h3>${comment.user.name} ${comment.user.surname} </h3>
-                                                    Comment: <p>${comment.message}</p>
-                                                </div>
-                                                </c:forEach>
+                                                    <div class="comments">
+                                                        <c:forEach items="${comments}" var="comment">
+                                                        <div class="cmt-item flex-it">
+                                                            <img src="/image?fileName=${comment.user.picUrl}" class="imageForm" alt="">
+                                                            <div class="author-infor">
+                                                                <div class="flex-it2">
+                                                                    <h6>${comment.user.name} ${comment.user.surname}</h6> <span class="time"> ${comment.date}</span>
+                                                                </div>
+                                                                <p>${comment.message}</p>
+                                                            </div>
+                                                        </div>
+                                                        </c:forEach>
+
+                                                    </div>
                                                 <div class="title-hd-sm">
 
                                                 </div>
@@ -153,9 +160,7 @@
                                                     </spring:form>
                                                 </div>
                                                 </c:if>
-
                                             </div>
-
                                     </div>
                                     <div id="reviews" class="tab review">
                                         <div class="row">

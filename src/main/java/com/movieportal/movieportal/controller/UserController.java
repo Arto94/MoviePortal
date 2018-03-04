@@ -4,8 +4,10 @@ package com.movieportal.movieportal.controller;
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.model.UserType;
 import com.movieportal.movieportal.repository.*;
+import com.movieportal.movieportal.security.CurrentUser;
 import com.movieportal.movieportal.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,8 +30,9 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String adminPage(ModelMap map) {
-        map.addAttribute("user", userUtil.getPrincipal());
         map.addAttribute("newUser", new User());
+        CurrentUser currentUser = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        map.addAttribute("user", currentUser.getUser());
         return "userprofile";
     }
 

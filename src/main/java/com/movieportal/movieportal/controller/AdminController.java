@@ -25,6 +25,9 @@ public class AdminController {
     private ActorRepository actorRepository;
 
     @Autowired
+    private BlogRepository blogRepository;
+
+    @Autowired
     private CompanyRepository companyRepository;
 
     @Autowired
@@ -45,7 +48,8 @@ public class AdminController {
     @RequestMapping(value = "/admin/basicFormElements", method = RequestMethod.GET)
     public String basicForms(ModelMap map, @RequestParam(value = "actorMessage", required = false) String actorMessage, @RequestParam(value = "genreMessage", required = false) String genreMessage,
                              @RequestParam(value = "companyMessage", required = false) String companyMessage, @RequestParam(value = "directorMessage", required = false) String directorMessage,
-                             @RequestParam(value = "movieMessage", required = false) String movieMessage) {
+                             @RequestParam(value = "movieMessage", required = false) String movieMessage,
+                             @RequestParam(value = "blogMessage", required = false) String blogMessage) {
         map.addAttribute("actor", new Actor());
         map.addAttribute("company", new Company());
         map.addAttribute("director", new Director());
@@ -55,12 +59,14 @@ public class AdminController {
         map.addAttribute("actors", actorRepository.findAll());
         map.addAttribute("directors", directorRepository.findAll());
         map.addAttribute("companies", companyRepository.findAll());
+        map.addAttribute("blog", new Blog());
         map.addAttribute("admin", userUtil.getPrincipal());
         map.addAttribute("actorMessage", actorMessage != null ? actorMessage : "");
         map.addAttribute("genreMessage", genreMessage != null ? genreMessage : "");
         map.addAttribute("companyMessage", companyMessage != null ? companyMessage : "");
         map.addAttribute("directorMessage", directorMessage != null ? directorMessage : "");
         map.addAttribute("movieMessage", movieMessage != null ? movieMessage : "");
+        map.addAttribute("blogMessage", blogMessage != null ? blogMessage : "");
         return "basic-form-elements";
     }
 
@@ -219,4 +225,29 @@ public class AdminController {
         return "redirect:/basicTables";
     }
 
+    @PostMapping(value = "/admin/addBlog")
+    public String addBlog(@ModelAttribute("blog") Blog blog, BindingResult result, @RequestParam("picture") MultipartFile multipartFile) throws IOException {
+        int size = 0;
+        StringBuilder sb = new StringBuilder();
+        if (result.hasErrors()) {
+            for (ObjectError objectError : result.getAllErrors()) {
+                if (size > 0) {
+                    sb.append(objectError.getDefaultMessage() + "<br>");
+                }
+                size++;
+            }
+        }
+            if (!(sb.toString().equals(""))) {
+                return "redirect:/admin/basicFormElements?blogMessage=" + sb.toString();
+            } else {
+
+                String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
+                File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+                multipartFile.transferTo(file);
+                blog.setPicture(picName);
+                blogRepository.save(blog);
+                return "redirect:/admin/basicFormElements";
+            }
+        }
 }
+

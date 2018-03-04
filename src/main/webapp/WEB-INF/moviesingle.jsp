@@ -109,7 +109,7 @@
                         <div class="rate">
                             <i class="ion-android-star"></i>
                             <p><span>8.1</span> /10<br>
-                                <span class="rv">56 Reviews</span>
+                                <span class="rv">${commentsCount} Reviews</span>
                             </p>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                                             </div>
                                             <div class="title-hd-sm">
                                                 <h4>User reviews</h4>
-                                                <a href="moviesingle.jsp#" class="time">See All 56 Reviews <i
+                                                <a href="/movieComment?movieId=${singleMovie.id}" class="time">See All ${commentsCount} Reviews <i
                                                         class="ion-ios-arrow-right"></i></a>
                                             </div>
                                             <!-- movie user review -->

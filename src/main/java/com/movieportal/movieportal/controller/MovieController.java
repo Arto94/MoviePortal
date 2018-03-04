@@ -41,6 +41,11 @@ public class MovieController {
         map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
         map.addAttribute("genres", genreRepository.findAll());
         map.addAttribute("genre", new Genre());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
+            CurrentUser principal = (CurrentUser) authentication.getPrincipal();
+            map.addAttribute("currentUser", principal.getUser());
+        }
         return "moviegridfw";
     }
 
@@ -54,6 +59,7 @@ public class MovieController {
         Movie single = movieRepository.findOne(id);
         if (single != null) {
             map.addAttribute("singleMovie", single);
+            map.addAttribute("commentsCount", commentRepository.findAllByMovieId(id).size());
             return "moviesingle";
         } else {
             map.addAttribute("message", "Movie Not Found");

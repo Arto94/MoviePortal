@@ -145,7 +145,11 @@
                             celebrities
                         </a>
                     </li>
-
+                    <li class="dropdown first">
+                        <a href="/blog">
+                            blog
+                        </a>
+                    </li>
                     <c:if test="${currentUser != null}">
                         <li class="dropdown first">
                             <a href="/Profile?userId=${currentUser.id}">

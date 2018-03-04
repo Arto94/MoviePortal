@@ -379,6 +379,59 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="portlet portlet-red">
+                                <div class="portlet-heading">
+                                    <div class="portlet-title">
+                                        <h4>Add Blog</h4>
+                                    </div>
+                                    <div class="portlet-widgets">
+                                        <a data-toggle="collapse" data-parent="#accordion"
+                                           href="basic-form-elements.html#formControls"><img src="../img/minimize-window.png" class="fa fa-chevron-down" width="30px" height="30px"></a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div id="formControls" class="panel-collapse collapse in">
+                                    <div class="portlet-body">
+                                        <span style="color: red">${blogMessage}</span>
+                                        <spring:form cssClass="form-horizontal" action="/admin/addBlog"
+                                                     modelAttribute="blog" method="post" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label for="textInput" class="col-sm-2 control-label">Title</label>
+                                                <div class="col-sm-10">
+                                                    <spring:input path="name" cssClass="form-control"
+                                                                  id="textInput" required="required"></spring:input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="textInputDisabled" class="col-sm-2 control-label">Description</label>
+                                                <div class="col-sm-10">
+                                                    <spring:input path="description" cssClass="form-control"
+                                                                  id="textInput" required="required"></spring:input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="textInputDisabled"
+                                                       class="col-sm-2 control-label">Date</label>
+                                                <div class="col-sm-10">
+                                                    <spring:input path="date" cssClass="form-control"
+                                                                  id="textInput" required="required"></spring:input>
+                                                </div>
+                                            </div>
+                                        <input type="file" name="picture">
+                                                <button type="submit" class="btn btn-default">ADD</button>
+                                            </div>
+                                        </spring:form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
