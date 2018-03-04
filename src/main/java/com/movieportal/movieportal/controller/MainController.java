@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Random;
 
 
 @Controller
@@ -31,7 +32,22 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-            List<Movie> movies = movieRepository.findAll().subList(1, 4);
+        Random random = new Random();
+            List<Movie> movies = null;
+            int size = movieRepository.findAll().size() - 1;
+            int index = random.nextInt(size);
+            if(size<=3) {
+                 movies = movieRepository.findAll();
+            }
+            else if(index + 3 <= size) {
+                 movies = movieRepository.findAll().subList(index, index+3);
+            }else if(index - 3 >= 0){
+                 movies = movieRepository.findAll().subList(index-3, index);
+            }else {
+                index = size/2;
+                 movies = movieRepository.findAll().subList(index-2,index+1);
+            }
+
             map.addAttribute("movies", movies);
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
