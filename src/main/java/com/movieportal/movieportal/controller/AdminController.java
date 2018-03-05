@@ -227,27 +227,15 @@ public class AdminController {
 
     @PostMapping(value = "/admin/addBlog")
     public String addBlog(@ModelAttribute("blog") Blog blog, BindingResult result, @RequestParam("picture") MultipartFile multipartFile) throws IOException {
-        int size = 0;
-        StringBuilder sb = new StringBuilder();
-        if (result.hasErrors()) {
-            for (ObjectError objectError : result.getAllErrors()) {
-                if (size > 0) {
-                    sb.append(objectError.getDefaultMessage() + "<br>");
-                }
-                size++;
-            }
-        }
-            if (!(sb.toString().equals(""))) {
-                return "redirect:/admin/basicFormElements?blogMessage=" + sb.toString();
-            } else {
 
-                String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-                File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
-                multipartFile.transferTo(file);
-                blog.setPicture(picName);
-                blogRepository.save(blog);
-                return "redirect:/admin/basicFormElements";
-            }
-        }
+
+        String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
+        File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+        multipartFile.transferTo(file);
+        blog.setPicture(picName);
+        blogRepository.save(blog);
+        return "redirect:/admin/basicFormElements";
+
+    }
 }
 

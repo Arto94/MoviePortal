@@ -56,6 +56,26 @@
                 </div>
                 <a href="/home"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
             </div>
+            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav flex-child-menu menu-left">
+                    <li class="dropdown first">
+                        <a href="/movies">
+                            movies
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a href="/actors">
+                            celebrities
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a href="/blog">
+                            blog
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <!-- /.navbar-collapse -->
         </nav>

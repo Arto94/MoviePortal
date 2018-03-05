@@ -97,7 +97,7 @@
             </div>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct">
-                    <h1 class="bd-hd">${actor.name}</h1>
+                    <h1 class="bd-hd">${actor.name} ${actor.surname}</h1>
                     <p class="ceb-single">Actor</p>
                     <div class="movie-tabs">
                         <div class="tabs">

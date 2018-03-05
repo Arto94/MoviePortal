@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -143,7 +144,7 @@
                 <div class="hero-ct">
                     <h1> blog detail</h1>
                     <ul class="breadcumb">
-                        <li class="active"><a href="blogdetail.html#">Home</a></li>
+                        <li class="active"><a href="/home">Home</a></li>
                         <li><span class="ion-ios-arrow-right"></span> blog listing</li>
                     </ul>
                 </div>
@@ -167,34 +168,33 @@
                     <!-- share link -->
 
                     <!-- comment items -->
-                    <div class="comments">
-                        <h4>04 Comments</h4>
-
+                    <div class="comments" id="blogComments">
+                        <c:forEach items="${blogComments}" var="comment">
                         <div class="cmt-item flex-it">
-                            <img src="images/uploads/author4.png" alt="">
+                            <img src="/image?fileName=${comment.user.picUrl}" alt="">
                             <div class="author-infor">
                                 <div class="flex-it2">
-                                    <h6><a href="blogdetail.html#">Margot Robbie</a></h6> <span class="time"> - 27 Mar 2017</span>
+                                    <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span class="time"> ${comment.date}</span>
                                 </div>
-                                <p>Joan Baez was the sharpest of the Rock Hall inductees, singing about deportees and
-                                    talking social activism as well as joking about her age and the likelihood that a
-                                    good portion of the Barclays. </p>
-                                <p><a class="rep-btn" href="blogdetail.html#">+ Reply</a></p>
+                                <p>${comment.message}</p>
                             </div>
                         </div>
+                        </c:forEach>
                     </div>
 
                     <c:if test="${currentUser != null}">
                         <div class="comment-form">
                             <h4>Leave a comment</h4>
-                            <form action="blogdetail.html">
-                                <div class="row">
+                            <spring:form action="/addBlogComment" method="post" modelAttribute="model"  >
+                               <div class="row">
                                     <div class="col-md-12">
-                                        <textarea name="message" id="" placeholder="Message"></textarea>
+                                        <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
                                     </div>
-                                </div>
+                                   <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
+                                   <spring:input path="blog" type="hidden" value="${blog.id}" name="movie" ></spring:input>
+                               </div>
                                 <input class="submit" type="submit" placeholder="submit">
-                            </form>
+                            </spring:form>
                         </div>
                     </c:if>
                     <!-- comment form -->
@@ -233,6 +233,18 @@
     </div>
 </footer>
 <!-- end of footer section-->
+
+<script>
+    setInterval(function () {
+        $.ajax({
+            url: "http://localhost:8080/getBlogComments?blogId=${blog.id}",
+            success: function (result) {
+                $("#blogComments").html(result);
+            }
+        });
+    }, 6000);
+
+</script>
 
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>

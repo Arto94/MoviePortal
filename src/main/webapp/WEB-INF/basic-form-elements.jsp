@@ -225,7 +225,7 @@
                                                 <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="name" placeholder="Name" cssClass="form-control"
-                                                                  id="inputEmail3" required="required"></spring:input>
+                                                                  id="inputEmail3" ></spring:input>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -399,7 +399,7 @@
                                         <spring:form cssClass="form-horizontal" action="/admin/addBlog"
                                                      modelAttribute="blog" method="post" enctype="multipart/form-data">
                                             <div class="form-group">
-                                                <label for="textInput" class="col-sm-2 control-label">Title</label>
+                                                <label for="textInput" class="col-sm-2 control-label">Name</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="name" cssClass="form-control"
                                                                   id="textInput" required="required"></spring:input>
