@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -32,23 +33,8 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-        Random random = new Random();
-            List<Movie> movies = null;
-            int size = movieRepository.findAll().size() - 1;
-            int index = random.nextInt(size);
-            if(size<=3) {
-                 movies = movieRepository.findAll();
-            }
-            else if(index + 3 <= size) {
-                 movies = movieRepository.findAll().subList(index, index+3);
-            }else if(index - 3 >= 0){
-                 movies = movieRepository.findAll().subList(index-3, index);
-            }else {
-                index = size/2;
-                 movies = movieRepository.findAll().subList(index-2,index+1);
-            }
-
-            map.addAttribute("movies", movies);
+        List<Movie> movies = movieRepository.orderByCreatedDate();
+        map.addAttribute("movies", movies);
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
@@ -72,7 +58,7 @@ public class MainController {
     }
 
     @GetMapping("/404")
-    public String Page404(){
+    public String Page404() {
         return "404";
     }
 }
