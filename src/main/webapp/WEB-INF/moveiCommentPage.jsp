@@ -1,3 +1,6 @@
+
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -129,8 +132,8 @@
                                             <!-- movie cast -->
 
                                             <div id="movieComments" class="mvcast-item">
-                                                    <div class="comments">
-                                                        <c:forEach items="${comments}" var="comment">
+                                                <div class="comments">
+                                                    <c:forEach items="${comments}" var="comment">
                                                         <div class="cmt-item flex-it">
                                                             <img src="/image?fileName=${comment.user.picUrl}" class="imageForm" alt="">
                                                             <div class="author-infor">
@@ -140,9 +143,9 @@
                                                                 <p>${comment.message}</p>
                                                             </div>
                                                         </div>
-                                                        </c:forEach>
+                                                    </c:forEach>
 
-                                                    </div>
+                                                </div>
                                                 <div class="title-hd-sm">
 
                                                 </div>
@@ -150,7 +153,7 @@
                                             </div>
                                             <div class="col-md-4 col-xs-12 col-sm-12">
                                             </div>
-                                                <c:if test="${currentUser != null}">
+                                            <c:if test="${currentUser != null}">
                                                 <div >
                                                     <spring:form action="/addComment" method="post" modelAttribute="modelComment"  cssClass="addCommentText">
                                                         <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
@@ -159,8 +162,8 @@
                                                         <input type="submit" value="ADD">
                                                     </spring:form>
                                                 </div>
-                                                </c:if>
-                                            </div>
+                                            </c:if>
+                                        </div>
                                     </div>
                                     <div id="reviews" class="tab review">
                                         <div class="row">
@@ -247,7 +250,6 @@
             }
         });
     }, 6000);
-
 </script>
 
 <script src="../js/jquery.js"></script>

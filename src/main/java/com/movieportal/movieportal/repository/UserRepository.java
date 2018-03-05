@@ -2,6 +2,7 @@ package com.movieportal.movieportal.repository;
 
 
 
+
 import com.movieportal.movieportal.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,10 +20,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Modifying
     @Query(value = "INSERT INTO wish(user_id,movie_id) VALUES(:userId,:movieId)", nativeQuery = true)
     void addWish(@Param("userId") int userId, @Param("movieId") int movieId);
-
-
-
-
-
 
 }

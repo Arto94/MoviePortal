@@ -110,7 +110,6 @@ public class MovieController {
 
     @GetMapping("/movieComment")
     public String movieCommentPage(@RequestParam("movieId") int id, ModelMap map) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal  = (CurrentUser) authentication.getPrincipal();

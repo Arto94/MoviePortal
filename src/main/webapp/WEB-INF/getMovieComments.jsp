@@ -21,7 +21,6 @@
                 </div>
             </div>
         </c:forEach>
-
     </div>
     <div class="title-hd-sm">
 

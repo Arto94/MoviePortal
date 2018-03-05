@@ -190,8 +190,6 @@
                                                     </p>
                                                 </c:forEach>
                                             </div>
-
-
                                             <div class="sb-it">
                                                 <h6>Genres:</h6>
                                                 <c:forEach items="${singleMovie.movieGenres}" var="genre">

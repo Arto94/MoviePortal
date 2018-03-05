@@ -243,7 +243,6 @@
             }
         });
     }, 6000);
-
 </script>
 
 <script src="js/jquery.js"></script>
