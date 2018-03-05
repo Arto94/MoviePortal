@@ -22,6 +22,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     List<Movie> findAllByMovieGenresIsContaining(Genre genre);
 
-    @Query(value = "select * from movie order by create_date limit 2", nativeQuery = true)
+    @Query(value = "select * from movie order by create_date limit 6", nativeQuery = true)
     List<Movie> orderByCreatedDate();
 }
