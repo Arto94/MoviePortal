@@ -129,7 +129,6 @@ public class MovieController {
 
     @PostMapping("/addComment")
     public String addComment(@ModelAttribute("modelComment") Comment comment) {
-        System.out.println(comment);
         commentRepository.save(comment);
         return "redirect:/movieComment?movieId="+comment.getMovie().getId();
     }

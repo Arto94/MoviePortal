@@ -1,6 +1,3 @@
-
-
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
@@ -126,6 +123,7 @@
                                 <div id="overview" class="tab active">
                                     <div class="row">
                                         <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <div class="blog-detail-ct">
                                             <p>${singleMovie.description}</p>
                                             <div class="title-hd-sm">
                                             </div>
@@ -151,10 +149,10 @@
                                                 </div>
                                                 <!-- movie user review -->
                                             </div>
-                                            <div class="col-md-4 col-xs-12 col-sm-12">
-                                            </div>
+
+
                                             <c:if test="${currentUser != null}">
-                                                <div >
+                                                <div  class="comment-form">
                                                     <spring:form action="/addComment" method="post" modelAttribute="modelComment"  cssClass="addCommentText">
                                                         <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
                                                         <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
@@ -163,7 +161,7 @@
                                                     </spring:form>
                                                 </div>
                                             </c:if>
-                                        </div>
+                                            </div>
                                     </div>
                                     <div id="reviews" class="tab review">
                                         <div class="row">
