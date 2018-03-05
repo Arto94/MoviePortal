@@ -8,6 +8,7 @@ import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
