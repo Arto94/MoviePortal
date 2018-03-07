@@ -30,7 +30,7 @@ public class User {
     private String surname;
 
     @Column
-    @Email(message = "email is not valid")
+//    @Email(message = "email is not valid")
     @NotEmpty(message = "email is empty")
     private String email;
 
@@ -44,9 +44,13 @@ public class User {
     @Column(name = "created_date")
     private String createDate;
 
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "user_type")
     private UserType userType;
+
+    @Column
+    private boolean verify;
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
@@ -54,4 +58,5 @@ public class User {
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "movie_id")})
     List<Movie> movies = new LinkedList<>();
+
 }
