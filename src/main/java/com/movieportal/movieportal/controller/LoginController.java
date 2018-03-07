@@ -45,6 +45,9 @@ public class LoginController {
             return "redirect:/home?message=" + sb.toString();
         }
         if (userRepository.findOneByEmail(user.getEmail()) == null) {
+            if(user.getPassword().length()<=6){
+                return "redirect:/home?message=password must be 6 symbols";
+            }
             String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
             File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
             multipartFile.transferTo(file);

@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="profile" href="moviesingle.jsp#">
+    <link rel="profile" href="blogdetail.html#">
 
     <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600'/>
@@ -25,20 +25,65 @@
     <meta name="format-detection" content="telephone-no">
 
     <!-- CSS files -->
-    <link rel="stylesheet" href="../css/plugins.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="../images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
     </div>
 </div>
+<!--end of preloading-->
+<!--login form popup-->
+<div class="login-wrapper" id="login-content">
+    <div class="login-content">
+        <a href="blogdetail.html#" class="close">x</a>
+        <h3>Login</h3>
+        <form method="post" action="http://haintheme.com/demo/html/bustter/login.php">
+            <div class="row">
+                <label for="username">
+                    Username:
+                    <input type="text" name="username" id="username" placeholder="Hugh Jackman"
+                           pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required"/>
+                </label>
+            </div>
 
+            <div class="row">
+                <label for="password">
+                    Password:
+                    <input type="password" name="password" id="password" placeholder="******"
+                           pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                           required="required"/>
+                </label>
+            </div>
+            <div class="row">
+                <div class="remember">
+                    <div>
+                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+                    </div>
+                    <a href="blogdetail.html#">Forget password ?</a>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <div class="row">
+            <p>Or via social</p>
+            <div class="social-btn-2">
+                <a class="fb" href="blogdetail.html#"><i class="ion-social-facebook"></i>Facebook</a>
+                <a class="tw" href="blogdetail.html#"><i class="ion-social-twitter"></i>twitter</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of login form popup-->
+<!--signup form popup-->
 <!--end of signup form popup-->
 
 <!-- BEGIN | Header -->
@@ -55,7 +100,33 @@
                         <span></span>
                     </div>
                 </div>
-                <a href="/home"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
+                <a href="/home"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav flex-child-menu menu-left">
+                    <li class="dropdown first">
+                        <a href="/movies">
+                            movies
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a href="/actors">
+                            celebrities
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a href="/blog">
+                            blog
+                        </a>
+                    </li>
+                    <c:if test="${currentUser != null}">
+                        <li class="dropdown first">
+                            <a href="/Profile?userId=${currentUser.id}">
+                                user profile
+                            </a></li>
+                    </c:if>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
@@ -66,174 +137,105 @@
 </header>
 <!-- END | Header -->
 
-<div class="hero mv-single-hero">
+<div class="hero common-hero">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <!-- <h1> movie listing - list</h1>
-                <ul class="breadcumb">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li> <span class="ion-ios-arrow-right"></span> movie listing</li>
-                </ul> -->
+                <div class="hero-ct">
+                    <h1> blog detail</h1>
+                    <ul class="breadcumb">
+                        <li class="active"><a href="/home">Home</a></li>
+                        <li><span class="ion-ios-arrow-right"></span> blog listing</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="page-single movie-single movie_single">
+<!-- blog detail section-->
+<div class="page-single">
     <div class="container">
-        <div class="row ipad-width2">
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="movie-img sticky-sb">
-                    <img src="/image?fileName=${singleMovie.picture}" alt="">
-                    <div class="movie-btn">
-                        <div class="btn-transform transform-vertical red">
-                            <div><a href="${singleMovie.movieTrailer}" class="item item-1 redbtn"> <i
-                                    class="ion-play"></i> Watch Trailer</a></div>
-                            <div><a href="${singleMovie.movieTrailer}"
-                                    class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="movie-tabs">
+                <div class="tabs">
+                    <ul class="tab-links tabs-mv">
+                        <li><a href="/moviesingle?movieId=${singleMovie.id}"> Movie Page</a></li>
+                        <li><a href="/movieActors?movieId=${singleMovie.id}"> Cast & Crew </a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-md-8 col-sm-12 col-xs-12">
-                <div class="movie-single-ct main-content">
-                    <h1 class="bd-hd">${singleMovie.title} <span>${singleMovie.year}</span></h1>
-                    <c:if test="${currentUser != null}">
-                        <div class="social-btn">
-                            <a href="/addFavorite?userId=${currentUser.id}&movieId=${singleMovie.id}"
-                               class="parent-btn"><i class="ion-heart"></i>
-                                Add to Favorite</a>
-                        </div>
-                    </c:if>
-                    <div class="movie-rate">
-                        <div class="rate">
-                            <i class="ion-android-star"></i>
-                            <p><span>8.1</span> /10<br>
-                            </p>
-                        </div>
+                    <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="blog-detail-ct">
+                    <h1>${singleMovie.title}</h1>
+                    <img src="/image?fileName=${singleMovie.picture}" alt="">
+                    <p>${singleMovie.description}</p>
+
+                    <div class="flex-it flex-ct">
                     </div>
-                    <div class="movie-tabs">
-                        <div class="tabs">
-                            <ul class="tab-links tabs-mv">
-                                <li><a href="/moviesingle?movieId=${singleMovie.id}"> Movie page</a></li>
-                                <li><a href="moviesingle.jsp#cast"> Cast & Crew </a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div id="overview" class="tab active">
-                                    <div class="row">
-                                        <div class="col-md-8 col-sm-12 col-xs-12">
-                                            <div class="blog-detail-ct">
-                                            <p>${singleMovie.description}</p>
-                                            <div class="title-hd-sm">
-                                            </div>
-                                            <!-- movie cast -->
+                    <!-- share link -->
 
-                                            <div id="movieComments" class="mvcast-item">
-                                                <div class="comments">
-                                                    <c:forEach items="${comments}" var="comment">
-                                                        <div class="cmt-item flex-it">
-                                                            <img src="/image?fileName=${comment.user.picUrl}" class="imageForm" alt="">
-                                                            <div class="author-infor">
-                                                                <div class="flex-it2">
-                                                                    <h6>${comment.user.name} ${comment.user.surname}</h6> <span class="time"> ${comment.date}</span>
-                                                                </div>
-                                                                <p>${comment.message}</p>
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-
-                                                </div>
-                                                <div class="title-hd-sm">
-
-                                                </div>
-                                                <!-- movie user review -->
-                                            </div>
-
-
-                                            <c:if test="${currentUser != null}">
-                                                <div  class="comment-form">
-                                                    <spring:form action="/addComment" method="post" modelAttribute="modelComment"  cssClass="addCommentText">
-                                                        <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
-                                                        <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
-                                                        <spring:input path="movie" type="hidden" value="${singleMovie.id}" name="movie" ></spring:input>
-                                                        <input type="submit" value="ADD">
-                                                    </spring:form>
-                                                </div>
-                                            </c:if>
-                                            </div>
+                    <!-- comment items -->
+                    <div class="comments" id="blogComments">
+                        <c:forEach items="${comments}" var="comment">
+                            <div class="cmt-item flex-it">
+                                <img src="/image?fileName=${comment.user.picUrl}" alt="">
+                                <div class="author-infor">
+                                    <div class="flex-it2">
+                                        <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span class="time"> ${comment.date}</span>
                                     </div>
-                                    <div id="reviews" class="tab review">
-                                        <div class="row">
-                                            <div class="rv-hd">
-                                                <div class="div">
-                                                    <h3>Related Movies To</h3>
-                                                    <h2>Skyfall: Quantum of Spectre</h2>
-                                                </div>
-                                                <a href="moviesingle.jsp#" class="redbtn">Write Review</a>
-                                            </div>
-                                            <div class="mv-user-review-item ">
-                                                <div class="user-infor">
-                                                    <img src="../images/uploads/userava4.jpg" alt="">
-                                                    <div>
-                                                        <h3>That spirit of fun</h3>
-                                                        <p class="time">
-                                                            26 March 2017 by <a href="moviesingle.jsp#"> juliawest</a>
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <p>If there were not an audience for Marvel comic heroes than clearly
-                                                    these
-                                                    films would not be made, to answer one other reviewer although I
-                                                </p>
-                                            </div>
-                                            <div class="topbar-filter">
-                                                <label>Reviews per page:</label>
-                                                <select>
-                                                    <option value="range">5 Reviews</option>
-                                                    <option value="saab">10 Reviews</option>
-                                                </select>
-                                                <div class="pagination2">
-                                                    <span>Page 1 of 6:</span>
-                                                    <a class="active" href="moviesingle.jsp#">1</a>
-                                                    <a href="moviesingle.jsp#">2</a>
-                                                    <a href="moviesingle.jsp#">3</a>
-                                                    <a href="moviesingle.jsp#">4</a>
-                                                    <a href="moviesingle.jsp#">5</a>
-                                                    <a href="moviesingle.jsp#">6</a>
-                                                    <a href="moviesingle.jsp#"><i class="ion-arrow-right-b"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <p>${comment.message}</p>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </div>
+
+                    <c:if test="${currentUser != null}">
+                        <div class="comment-form">
+                            <h4>Leave a comment</h4>
+                            <spring:form action="/addComment" method="post" modelAttribute="modelComment"  >
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
+                                    </div>
+                                    <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
+                                    <spring:input path="movie" type="hidden" value="${singleMovie.id}" name="movie" ></spring:input>
+                                </div>
+                                <input class="submit" type="submit" placeholder="submit">
+                            </spring:form>
+                        </div>
+                    </c:if>
+                    <!-- comment form -->
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="sidebar">
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+<!-- end of  blog detail section-->
+<!-- footer section-->
 <footer class="ht-footer">
     <div class="container">
         <div class="flex-parent-ft">
             <div class="flex-child-ft item1">
-                <a href="/home"><img class="logo" src="../images/logo1.png" alt=""></a>
-                <p>Republic Armenia City Gyumri<br>
-                </p>
-                <p>Call us: <a href="singleactor.jsp#">(+374) 69 89 62</a></p>
+                <a href="/home"><img class="logo" src="images/logo1.png" alt=""></a>
+
+                <p>Call us: <a href="/home">(+374) 44-19-19-91</a></p>
             </div>
+
+
         </div>
     </div>
     <div class="ft-copyright">
         <div class="ft-left">
-            <p>© 2018 Armbuster. All Rights Reserved. Designed by Artash and Karen.</p>
+            <p>© 2017 Blockbuster. All Rights Reserved. Designed by Artash&Karen.</p>
         </div>
         <div class="backtotop">
-            <p><a href="singleactor.jsp#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a>
-            </p>
+            <p><a href="/home" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
         </div>
     </div>
 </footer>
@@ -242,17 +244,17 @@
 <script>
     setInterval(function () {
         $.ajax({
-            url: "http://localhost:8080/getMovieComments?movieId=${singleMovie.id}",
+            url: "http://localhost:8080/getComments?movieId=${singleMovie.id}",
             success: function (result) {
-                $("#movieComments").html(result);
+                $("#blogComments").html(result);
             }
         });
     }, 6000);
 </script>
 
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.js"></script>
-<script src="../js/plugins2.js"></script>
-<script src="../js/custom.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

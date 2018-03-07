@@ -8,22 +8,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div id="movieComments" class="mvcast-item">
-    <div class="comments">
-        <c:forEach items="${comments}" var="comment">
-            <div class="cmt-item flex-it">
-                <img src="/image?fileName=${comment.user.picUrl}" class="imageForm" alt="">
-                <div class="author-infor">
-                    <div class="flex-it2">
-                        <h6>${comment.user.name} ${comment.user.surname}</h6> <span class="time"> ${comment.date}</span>
-                    </div>
-                    <p>${comment.message}</p>
+<div class="comments" id="blogComments">
+    <c:forEach items="${comments}" var="comment">
+        <div class="cmt-item flex-it">
+            <img src="/image?fileName=${comment.user.picUrl}" alt="">
+            <div class="author-infor">
+                <div class="flex-it2">
+                    <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span class="time"> ${comment.date}</span>
                 </div>
+                <p>${comment.message}</p>
             </div>
-        </c:forEach>
-    </div>
-    <div class="title-hd-sm">
-
-    </div>
-    <!-- movie user review -->
+        </div>
+    </c:forEach>
 </div>

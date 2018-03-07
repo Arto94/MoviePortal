@@ -26,6 +26,8 @@ public class MovieController {
     @Autowired
     private MovieRepository movieRepository;
     @Autowired
+    private ActorRepository actorRepository;
+    @Autowired
     private CommentRepository commentRepository;
     @Autowired
     private UserRepository userRepository;
@@ -138,5 +140,11 @@ public class MovieController {
     public String getMovieComments(ModelMap map,@RequestParam("movieId") int id) {
         map.addAttribute("comments", commentRepository.findAllByMovieId(id));
         return "getMovieComments";
+    }
+
+    @GetMapping("/movieActors")
+    public String movieActors(ModelMap map,@RequestParam("movieId") int id) {
+        map.addAttribute("singleMovie", movieRepository.findOne(id));
+        return "movieActors";
     }
 }

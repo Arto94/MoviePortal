@@ -142,8 +142,9 @@
                         <div class="tabs">
                             <ul class="tab-links tabs-mv">
                                 <li><a href="/movieComment?movieId=${singleMovie.id}"> Reviews</a></li>
-                                <li><a href="moviesingle.jsp#cast"> Cast & Crew </a></li>
+                                <li><a href="/movieActors?movieId=${singleMovie.id}"> Cast & Crew </a></li>
                             </ul>
+
                             <div class="tab-content">
                                 <div id="overview" class="tab active">
                                     <div class="row">
