@@ -74,6 +74,7 @@ public class MovieportalApplication extends WebMvcConfigurerAdapter {
         return factory.createMultipartConfig();
     }
 
+
     @Bean
     public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
         return (container -> {
