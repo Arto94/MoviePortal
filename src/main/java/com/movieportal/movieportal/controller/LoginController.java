@@ -77,7 +77,7 @@ public class LoginController {
 
     @GetMapping(value = "/login?error")
     public String loginError() {
-        return "/movies";
+        return "redirect:/404";
     }
 
     @GetMapping("/verify")
