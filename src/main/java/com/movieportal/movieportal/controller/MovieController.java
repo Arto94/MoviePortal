@@ -63,7 +63,7 @@ public class MovieController {
             map.addAttribute("commentsCount", commentRepository.findAllByMovieId(id).size());
             return "moviesingle";
         } else {
-            map.addAttribute("message", "Movie Not Found");
+            map.addAttribute( "message", "Movie Not Found");
             return "404";
         }
     }

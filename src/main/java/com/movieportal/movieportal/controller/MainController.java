@@ -58,7 +58,8 @@ public class MainController {
     }
 
     @GetMapping("/404")
-    public String Page404() {
+    public String Page404(ModelMap map) {
+        map.addAttribute("message", "Please verify Your Account");
         return "404";
     }
 }

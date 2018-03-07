@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -66,6 +67,7 @@ public class LoginController {
         return "redirect:/home";
     }
 
+
     @GetMapping(value = "/loginsucces")
     public String userOrAdminPage() {
         CurrentUser principal = (CurrentUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,10 +77,6 @@ public class LoginController {
         return "redirect:/user";
     }
 
-    @GetMapping(value = "/login?error")
-    public String loginError() {
-        return "redirect:/404";
-    }
 
     @GetMapping("/verify")
     public String verifyUser(@RequestParam("token") String token) {

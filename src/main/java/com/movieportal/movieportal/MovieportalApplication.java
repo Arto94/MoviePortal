@@ -44,16 +44,13 @@ public class MovieportalApplication extends WebMvcConfigurerAdapter {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
-
         mailSender.setUsername(email);
         mailSender.setPassword(password);
-
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.debug", "true");
-
         return mailSender;
     }
 
@@ -73,7 +70,6 @@ public class MovieportalApplication extends WebMvcConfigurerAdapter {
         factory.setMaxRequestSize("1024KB");
         return factory.createMultipartConfig();
     }
-
 
     @Bean
     public EmbeddedServletContainerCustomizer embeddedServletContainerCustomizer() {
