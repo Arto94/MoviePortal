@@ -24,18 +24,37 @@ import java.util.Properties;
 @SpringBootApplication
 public class MovieportalApplication extends WebMvcConfigurerAdapter {
 
+
     @Value("${gmail.email}")
     private String email;
     @Value("${gmail.password}")
     private String password;
+
     public static void main(String[] args) {
         SpringApplication.run(MovieportalApplication.class, args);
     }
 
-
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
+    }
+
+    @Bean(name = "mailSender")
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername(email);
+        mailSender.setPassword(password);
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
     }
 
     @Bean
@@ -61,22 +80,5 @@ public class MovieportalApplication extends WebMvcConfigurerAdapter {
             ErrorPage custom404 = new ErrorPage(HttpStatus.NOT_FOUND, "/404");
             container.addErrorPages(custom404);
         });
-    }
-
-
-
-    @Bean(name = "mailSender")
-    public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.gmail.com");
-        mailSender.setPort(587);
-        mailSender.setUsername(email);
-        mailSender.setPassword(password);
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.transport.protocol", "smtp");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.debug", "true");
-        return mailSender;
     }
 }
