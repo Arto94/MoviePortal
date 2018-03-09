@@ -111,7 +111,6 @@
                         <p>Account Details</p>
                         <ul>
                             <li><a href="/userFavoriteMovies?userId=${user.id}">Favorite movies</a></li>
-                            <li><a href="userrate.html">Rated movies</a></li>
                         </ul>
                     </div>
                     <div class="user-fav">
