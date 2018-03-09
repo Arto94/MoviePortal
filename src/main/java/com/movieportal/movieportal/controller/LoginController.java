@@ -57,7 +57,7 @@ public class LoginController {
             user.setVerify(false);
             userRepository.save(user);
             String token = jwtTokenUtil.generateToken(new CurrentUser(user));
-            String message = String.format("Hi %s, You are successfully registered to our cool portal. Please visit by <a href=\"http://localhost:8088/verify?token=%s\">this</a> link to verify your account", user.getName(), token);
+            String message = String.format("Hi %s, You are successfully registered to our cool portal. Please visit by  \"http://localhost:8088/verify?token=%s\" this link to verify your account", user.getName(), token);
             emailService.sendSimpleMessage(user.getEmail(), "Welcome", message);
             return "redirect:/home";
         } else {

@@ -189,7 +189,6 @@
                         </div>
                         <div class="title-in">
                             <h6><a href="/moviesingle?movieId=${movie.id}">${movie.title}</a></h6>
-                            <p><i class="ion-android-star"></i><span>7.4</span> /10</p>
                         </div>
                     </div>
                 </c:forEach>
