@@ -36,7 +36,6 @@ public class BlogController {
         return "bloglist";
     }
 
-
     @GetMapping("/blogDetail")
     public String blogDetail(ModelMap map,@RequestParam("id") int id) {
         map.addAttribute("blog",blogRepository.findOne(id));

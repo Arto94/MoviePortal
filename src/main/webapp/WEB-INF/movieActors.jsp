@@ -101,7 +101,7 @@
                 <div class="hero-ct">
                     <h1>Movie Actors - grid</h1>
                     <ul class="breadcumb">
-                        <li class="active"><a href="celebritygrid02.html#">Home</a></li>
+                        <li class="active"><a href="/home">Home</a></li>
                         <li><span class="ion-ios-arrow-right"></span> celebrity listing</li>
                     </ul>
                 </div>
@@ -147,12 +147,11 @@
                         <div class="ceb-item-style-2">
                             <img src="/image?fileName=${actor.pic}" alt="">
                             <div class="ceb-infor">
-                                <h2><a href="/singleActor?actorId?=${actor.id}">${actor.name} ${actor.surname}</a></h2>
+                                <h2><a href="/singleActor?actorId=${actor.id}">${actor.name} ${actor.surname}</a></h2>
                             </div>
                         </div>
                     </div>
                 </c:forEach>
-
             </div>
         </div>
     </div>
