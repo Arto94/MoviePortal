@@ -24,7 +24,6 @@ public class Blog {
     @NotEmpty(message = "description is empty")
     private String description;
     @Column
-    @NotEmpty(message = "date is empty")
     private String date;
     @Column
     private String picture;

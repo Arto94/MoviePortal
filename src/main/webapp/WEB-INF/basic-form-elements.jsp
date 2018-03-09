@@ -412,14 +412,6 @@
                                                                   id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="textInputDisabled"
-                                                       class="col-sm-2 control-label">Date</label>
-                                                <div class="col-sm-10">
-                                                    <spring:input path="date" cssClass="form-control"
-                                                                  id="textInput" required="required"></spring:input>
-                                                </div>
-                                            </div>
                                         <input type="file" name="picture">
                                                 <button type="submit" class="btn btn-default">ADD</button>
                                             </div>

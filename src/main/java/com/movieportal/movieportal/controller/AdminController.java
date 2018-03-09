@@ -5,6 +5,7 @@ import com.movieportal.movieportal.model.*;
 import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.util.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -44,6 +45,9 @@ public class AdminController {
 
     @Autowired
     private UserUtil userUtil;
+
+    @Value("${movieportal.product.upload.path}")
+    private String imageUploadPath;
 
     @RequestMapping(value = "/admin/basicFormElements", method = RequestMethod.GET)
     public String basicForms(ModelMap map, @RequestParam(value = "actorMessage", required = false) String actorMessage, @RequestParam(value = "genreMessage", required = false) String genreMessage,
@@ -92,7 +96,7 @@ public class AdminController {
             return "redirect:/admin/basicFormElements?actorMessage=" + sb.toString();
         }
         String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-        File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+        File file = new File(imageUploadPath + picName);
         multipartFile.transferTo(file);
         actor.setPic(picName);
         actorRepository.save(actor);
@@ -158,7 +162,7 @@ public class AdminController {
             return "redirect:/admin/basicFormElements?movieMessage=" + sb.toString();
         }
         String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-        File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+        File file = new File(imageUploadPath + picName);
         multipartFile.transferTo(file);
         movie.setPicture(picName);
         String[] genres = movieGenres.split(",");
@@ -227,10 +231,8 @@ public class AdminController {
 
     @PostMapping(value = "/admin/addBlog")
     public String addBlog(@ModelAttribute("blog") Blog blog, BindingResult result, @RequestParam("picture") MultipartFile multipartFile) throws IOException {
-
-
         String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-        File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+        File file = new File(imageUploadPath + picName);
         multipartFile.transferTo(file);
         blog.setPicture(picName);
         blogRepository.save(blog);

@@ -116,7 +116,7 @@
             		<img src="/image?fileName=${blog.picture}" alt="">
             		<div class="blog-it-infor">
             			<h3><a href="/blogDetail?id=${blog.id}">${blog.name}</a></h3>
-            			<span class="time">27 Mar 2017</span>
+            			<span class="time">${blog.date}</span>
             			<p>${blog.description}</p>
             		</div>
             	</div>

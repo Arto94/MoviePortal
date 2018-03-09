@@ -40,7 +40,6 @@ public class BlogController {
     @GetMapping("/blogDetail")
     public String blogDetail(ModelMap map,@RequestParam("id") int id) {
         map.addAttribute("blog",blogRepository.findOne(id));
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
