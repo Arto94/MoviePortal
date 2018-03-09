@@ -7,6 +7,7 @@ import com.movieportal.movieportal.model.UserType;
 import com.movieportal.movieportal.repository.UserRepository;
 import com.movieportal.movieportal.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,8 +29,8 @@ public class LoginController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
-
-
+    @Value("${movieportal.product.upload.path}")
+    private String imageUploadPath;
     @Autowired
     private EmailServiceImpl emailService;
     @Autowired
@@ -45,11 +46,11 @@ public class LoginController {
             return "redirect:/home?message=" + sb.toString();
         }
         if (userRepository.findOneByEmail(user.getEmail()) == null) {
-            if(user.getPassword().length()<=6){
+            if (user.getPassword().length() <= 6) {
                 return "redirect:/home?message=password must be 6 symbols";
             }
             String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
-            File file = new File("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + picName);
+            File file = new File(imageUploadPath + picName);
             multipartFile.transferTo(file);
             user.setPicUrl(picName);
             user.setUserType(UserType.USER);

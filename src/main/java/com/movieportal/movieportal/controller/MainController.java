@@ -7,6 +7,7 @@ import com.movieportal.movieportal.repository.MovieRepository;
 import com.movieportal.movieportal.security.CurrentUser;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,7 +31,8 @@ public class MainController {
 
     @Autowired
     private MovieRepository movieRepository;
-
+    @Value("${movieportal.product.upload.path}")
+    private String imageUploadPath;
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
         List<Movie> movies = movieRepository.orderByCreatedDate();
@@ -47,7 +49,7 @@ public class MainController {
 
     @RequestMapping(value = "/image", method = RequestMethod.GET)
     public void getImageAsByteArray(HttpServletResponse response, @RequestParam("fileName") String fileName) throws IOException {
-        InputStream in = new FileInputStream("C:\\Users\\XTreme.ws\\Desktop\\mvc\\" + fileName);
+        InputStream in = new FileInputStream(imageUploadPath + fileName);
         response.setContentType(MediaType.ALL_VALUE);
         IOUtils.copy(in, response.getOutputStream());
     }
