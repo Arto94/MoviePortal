@@ -47,7 +47,7 @@ public class AdminController {
     private UserUtil userUtil;
 
     @Value("${movieportal.product.upload.path}")
-    private String imageUploadPath;x
+    private String imageUploadPath;
 
     @RequestMapping(value = "/admin/basicFormElements", method = RequestMethod.GET)
     public String basicForms(ModelMap map, @RequestParam(value = "actorMessage", required = false) String actorMessage, @RequestParam(value = "genreMessage", required = false) String genreMessage,
