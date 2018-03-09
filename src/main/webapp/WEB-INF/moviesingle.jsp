@@ -150,28 +150,6 @@
                                     <div class="row">
                                         <div class="col-md-8 col-sm-12 col-xs-12">
                                             <p>${singleMovie.description}</p>
-                                            <div class="title-hd-sm">
-                                                <h4>cast</h4>
-                                                <a href="moviesingle.jsp#" class="time">Full Cast & Crew <i
-                                                        class="ion-ios-arrow-right"></i></a>
-                                            </div>
-                                            <!-- movie cast -->
-
-                                            <div class="mvcast-item">
-                                                <c:forEach items="${singleMovie.movieActors}" var="actor">
-                                                    <div class="cast-it">
-                                                        <div class="cast-left">
-                                                            <img src="/image?fileName=${actor.pic}" alt="e">
-                                                            <a href="/singleActor?actorId=${actor.id}">${actor.name}</a>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
-                                            <div class="title-hd-sm">
-                                                <h4>User reviews</h4>
-                                                <a href="/movieComment?movieId=${singleMovie.id}" class="time">See All ${commentsCount} Reviews <i
-                                                        class="ion-ios-arrow-right"></i></a>
-                                            </div>
                                             <!-- movie user review -->
                                         </div>
                                         <div class="col-md-4 col-xs-12 col-sm-12">
