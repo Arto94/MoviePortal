@@ -237,7 +237,6 @@ public class AdminController {
         blog.setPicture(picName);
         blogRepository.save(blog);
         return "redirect:/admin/basicFormElements";
-
     }
 }
 

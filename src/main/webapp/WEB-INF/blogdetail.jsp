@@ -128,11 +128,7 @@
                     </c:if>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
-
-        <!-- top search form -->
-
     </div>
 </header>
 <!-- END | Header -->
