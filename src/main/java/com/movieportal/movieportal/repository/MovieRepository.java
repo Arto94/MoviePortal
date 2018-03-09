@@ -4,6 +4,7 @@ package com.movieportal.movieportal.repository;
 import com.movieportal.movieportal.model.Actor;
 import com.movieportal.movieportal.model.Genre;
 import com.movieportal.movieportal.model.Movie;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -25,6 +26,5 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     @Query(value = "select * from movie order by create_date limit 6", nativeQuery = true)
     List<Movie> orderByCreatedDate();
-
 
 }

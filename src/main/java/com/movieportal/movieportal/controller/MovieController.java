@@ -9,6 +9,7 @@ import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -146,5 +148,12 @@ public class MovieController {
     public String movieActors(ModelMap map,@RequestParam("movieId") int id) {
         map.addAttribute("singleMovie", movieRepository.findOne(id));
         return "movieActors";
+    }
+
+
+    @GetMapping("/page")
+    public  String getMovieByPagination(@Param("pageNumber")int pageNumber){
+        movieRepository.findAll(Collections.singleton(pageNumber));
+        return "redirect:/movies";
     }
 }

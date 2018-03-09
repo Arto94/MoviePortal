@@ -91,15 +91,15 @@
         <!-- top search form -->
         <span style="color:red;">${errorMessage}</span>
         <div class="top-search">
-           <spring:form action="/selectByGenre" method="get" modelAttribute="genre">
-               <label for="searches"><p style="color: #BD081C">Select genre</p></label>
-               <select name="genreid" >
-                   <c:forEach items="${genres}" var="genre">
-                   <option  value="${genre.id}">${genre.name}</option>
-                   </c:forEach>
-               </select>
-               <button class="btn btn-search" type="submit">Search</button>
-           </spring:form>
+            <spring:form action="/selectByGenre" method="get" modelAttribute="genre">
+                <label for="searches"><p style="color: #BD081C">Select genre</p></label>
+                <select name="genreid">
+                    <c:forEach items="${genres}" var="genre">
+                        <option value="${genre.id}">${genre.name}</option>
+                    </c:forEach>
+                </select>
+                <button class="btn btn-search" type="submit">Search</button>
+            </spring:form>
             <form action="/searchMovie" style="margin-left: 75%">
                 <label for="searches"><p style="color: #BD081C">Movie Title</p></label>
                 <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
@@ -143,8 +143,8 @@
                         </select>
                     </form>
                 </div>
-                    <div class="flex-wrap-movielist mv-grid-fw">
-                        <c:forEach items="${movies}" var="movie">
+                <div class="flex-wrap-movielist mv-grid-fw">
+                    <c:forEach items="${movies}" var="movie">
                         <div class="movie-item-style-2 movie-item-style-1">
 
                             <img src="/image?fileName=${movie.picture}" alt="">
@@ -156,8 +156,8 @@
                                 <h6>${movie.title}</h6>
                             </div>
                         </div>
-                        </c:forEach>
-                    </div>
+                    </c:forEach>
+                </div>
                 <div class="topbar-filter">
                     <label>Movies per page:</label>
                     <select>
@@ -166,10 +166,8 @@
                     </select>
 
                     <div class="pagination2">
-                        <span>Page 1 of 2:</span>
-                        <a class="active" href="moviegridfw.jsp#">1</a>
-                        <a href="moviegridfw.jsp#">2</a>
-                        <a href="moviegridfw.jsp#">3</a>
+                        <a href=/page?pageNumber=1>1</a>
+                        <a href=/page?pageNumber=2">2</a>
                         <a href="moviegridfw.jsp#"><i class="ion-arrow-right-b"></i></a>
                     </div>
                 </div>
