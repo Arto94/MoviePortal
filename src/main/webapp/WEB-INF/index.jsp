@@ -43,10 +43,11 @@
 <!--end of preloading-->
 <!--login form popup-->
 
+<c:if test="${currentUser==null}">
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="/home" class="close">x</a>
-        <h3>Login</h3>
+    <h3>Login</h3>
         <spring:form action="/login" modelAttribute="user" method="post">
             <div class="row">
                 <label>
@@ -73,6 +74,9 @@
         </spring:form>
     </div>
 </div>
+</c:if  >
+
+
 
 
 <!--end of login form popup-->
@@ -156,6 +160,12 @@
                         <li class="dropdown first">
                             <a href="/Profile?userId=${currentUser.id}">
                                 user profile
+                            </a></li>
+                    </c:if>
+                    <c:if test="${currentUser != null}">
+                        <li class="dropdown first">
+                            <a href="/logout">
+                               LOGOUT
                             </a></li>
                     </c:if>
                 </ul>
