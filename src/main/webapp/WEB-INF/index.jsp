@@ -43,11 +43,11 @@
 <!--end of preloading-->
 <!--login form popup-->
 
-<c:if test="${currentUser==null}">
+
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="/home" class="close">x</a>
-    <h3>Login</h3>
+        <h3>Login</h3>
         <spring:form action="/login" modelAttribute="user" method="post">
             <div class="row">
                 <label>
@@ -64,7 +64,7 @@
             <div class="row">
                 <div class="remember">
                     <div>
-                        <input type="checkbox" name="remember-me" ><span>Remember me</span>
+                        <input type="checkbox" name="remember-me"><span>Remember me</span>
                     </div>
                 </div>
             </div>
@@ -74,9 +74,6 @@
         </spring:form>
     </div>
 </div>
-</c:if  >
-
-
 
 
 <!--end of login form popup-->
@@ -90,13 +87,13 @@
             <div class="row">
                 Name:
                 <label>
-                    <spring:input path="name" title="name" required="required" /><br>
+                    <spring:input path="name" title="name" required="required"/><br>
                 </label>
             </div>
             <div class="row">
                 your surname:
                 <label>
-                    <spring:input path="surname" title="surname" required="required" /><br>
+                    <spring:input path="surname" title="surname" required="required"/><br>
                 </label>
             </div>
             <div class="row">
@@ -112,7 +109,7 @@
                 </label>
             </div>
 
-            <input type="file" name="picture"  >
+            <input type="file" name="picture">
             <div class="row">
                 <button type="submit">sign up</button>
             </div>
@@ -165,21 +162,23 @@
                     <c:if test="${currentUser != null}">
                         <li class="dropdown first">
                             <a href="/logout">
-                               LOGOUT
+                                LOGOUT
                             </a></li>
                     </c:if>
                 </ul>
                 <ul class="nav navbar-nav flex-child-menu menu-right">
-                    <li class="loginLink"><a href="index.html#">LOG In</a></li>
+                    <c:if test="${currentUser==null}">
+                        <li class="loginLink"><a href="index.html#">LOG In</a></li>
+                    </c:if>
                     <li class="btn signupLink"><a href="index.html#">sign up</a></li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
+
         </nav>
-        <!-- top search form -->
+
     </div>
 </header>
-<!-- END | Header -->
+
 
 <div class="slider movie-items">
     <div class="container">
