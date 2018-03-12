@@ -173,9 +173,7 @@
                     <li class="btn signupLink"><a href="index.html#">sign up</a></li>
                 </ul>
             </div>
-
         </nav>
-
     </div>
 </header>
 

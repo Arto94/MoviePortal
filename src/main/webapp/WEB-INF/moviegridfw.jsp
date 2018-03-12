@@ -131,17 +131,6 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="topbar-filter fw">
                     <p>Found <span>${movies.size()}</span> in total</p>
-                    <label>Sort by:</label>
-                    <form action="getMoviesOrderBy">
-                        <select>
-                            <option value="name">Name</option>
-                            <option value="budget">Budget</option>
-                            <option value="rating">Rating Descending</option>
-                            <option value="rating">Rating Ascending</option>
-                            <option value="date">Release date Descending</option>
-                            <option value="date">Release date Ascending</option>
-                        </select>
-                    </form>
                 </div>
                 <div class="flex-wrap-movielist mv-grid-fw">
                     <c:forEach items="${movies}" var="movie">
@@ -159,15 +148,9 @@
                     </c:forEach>
                 </div>
                 <div class="topbar-filter">
-                    <label>Movies per page:</label>
-                    <select>
-                        <option value="range">20 Movies</option>
-                        <option value="saab">10 Movies</option>
-                    </select>
-
                     <div class="pagination2">
                         <a href=/page?pageNumber=1>1</a>
-                        <a href=/page?pageNumber=2">2</a>
+                        <a href=/page?pageNumber=2>2</a>
                         <a href="moviegridfw.jsp#"><i class="ion-arrow-right-b"></i></a>
                     </div>
                 </div>

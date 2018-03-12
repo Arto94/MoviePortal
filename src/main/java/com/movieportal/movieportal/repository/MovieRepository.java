@@ -27,4 +27,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     @Query(value = "select * from movie order by create_date limit 6", nativeQuery = true)
     List<Movie> orderByCreatedDate();
 
+    List<Movie> findAllBy(Pageable pageable);
+
 }

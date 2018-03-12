@@ -7,11 +7,14 @@ import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.security.CurrentUser;
+import javafx.scene.input.InputMethodTextRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.social.facebook.api.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -67,7 +71,7 @@ public class MovieController {
             map.addAttribute("commentsCount", commentRepository.findAllByMovieId(id).size());
             return "moviesingle";
         } else {
-            map.addAttribute( "message", "Movie Not Found");
+            map.addAttribute("message", "Movie Not Found");
             return "404";
         }
     }
@@ -117,14 +121,14 @@ public class MovieController {
     public String movieCommentPage(@RequestParam("movieId") int id, ModelMap map) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
-            CurrentUser principal  = (CurrentUser) authentication.getPrincipal();
+            CurrentUser principal = (CurrentUser) authentication.getPrincipal();
             map.addAttribute("currentUser", principal.getUser());
         }
         Movie single = movieRepository.findOne(id);
         if (single != null) {
             map.addAttribute("singleMovie", single);
-            map.addAttribute("comments",commentRepository.findAllByMovieId(single.getId()));
-            map.addAttribute("modelComment",new Comment());
+            map.addAttribute("comments", commentRepository.findAllByMovieId(single.getId()));
+            map.addAttribute("modelComment", new Comment());
             return "moveiCommentPage";
         } else {
             map.addAttribute("message", "Movie Not Found");
@@ -135,25 +139,25 @@ public class MovieController {
     @PostMapping("/addComment")
     public String addComment(@ModelAttribute("modelComment") Comment comment) {
         commentRepository.save(comment);
-        return "redirect:/movieComment?movieId="+comment.getMovie().getId();
+        return "redirect:/movieComment?movieId=" + comment.getMovie().getId();
     }
 
     @GetMapping("/getMovieComments")
-    public String getMovieComments(ModelMap map,@RequestParam("movieId") int id) {
+    public String getMovieComments(ModelMap map, @RequestParam("movieId") int id) {
         map.addAttribute("comments", commentRepository.findAllByMovieId(id));
         return "getMovieComments";
     }
 
     @GetMapping("/movieActors")
-    public String movieActors(ModelMap map,@RequestParam("movieId") int id) {
+    public String movieActors(ModelMap map, @RequestParam("movieId") int id) {
         map.addAttribute("singleMovie", movieRepository.findOne(id));
         return "movieActors";
     }
 
 
     @GetMapping("/page")
-    public  String getMovieByPagination(@Param("pageNumber")int pageNumber){
-        movieRepository.findAll(Collections.singleton(pageNumber));
+    public String getMovieByPagination(@Param("pageNumber") int pageNumber,ModelMap map) {
+
         return "redirect:/movies";
     }
 }
