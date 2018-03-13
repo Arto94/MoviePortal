@@ -55,24 +55,47 @@ public class Movie {
     @Column(name = "movie_trailer")
     private String movieTrailer;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "movie_genre",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "genre_id")})
     List<Genre> movieGenres = new LinkedList<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "actor_movie",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "actor_id")})
     List<Actor> movieActors = new LinkedList<>();
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "director_movie",
             joinColumns = {@JoinColumn(name = "movie_id")},
             inverseJoinColumns = {@JoinColumn(name = "director_id")})
     List<Director> movieDirectors = new LinkedList<>();
+
+    @ManyToMany(mappedBy = "movies")
+    private List<User> users;
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", year=" + year +
+                ", createDate='" + createDate + '\'' +
+                ", country='" + country + '\'' +
+                ", budget='" + budget + '\'' +
+                ", movieTime='" + movieTime + '\'' +
+                ", picture='" + picture + '\'' +
+                ", company=" + company +
+                ", movieTrailer='" + movieTrailer + '\'' +
+                ", movieGenres=" + movieGenres +
+                ", movieActors=" + movieActors +
+                ", movieDirectors=" + movieDirectors +
+                '}';
+    }
 }

@@ -52,7 +52,7 @@ public class User {
     @Column
     private boolean verify;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "wish",
             joinColumns = {@JoinColumn(name = "user_id")},

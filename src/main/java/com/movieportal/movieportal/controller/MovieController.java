@@ -11,6 +11,7 @@ import javafx.scene.input.InputMethodTextRun;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -59,10 +60,16 @@ public class MovieController {
     }
 
     @GetMapping("/moviesingle")
-    public String singleMovie(@RequestParam("movieId") int id, ModelMap map) {
+    public String singleMovie(@RequestParam("movieId") Integer id, ModelMap map) {
+        boolean isUserAddFavorite = false;
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
+            List<Movie> allByUsersIsContaining = movieRepository.findAllByUsersIsContaining(principal.getUser());
+            if (!allByUsersIsContaining.contains(movieRepository.findOne(id))) {
+                isUserAddFavorite = true;
+            }
+            map.addAttribute("isUserAddFavorite", isUserAddFavorite);
             map.addAttribute("currentUser", principal.getUser());
         }
         Movie single = movieRepository.findOne(id);
@@ -156,8 +163,9 @@ public class MovieController {
 
 
     @GetMapping("/page")
-    public String getMovieByPagination(@Param("pageNumber") int pageNumber,ModelMap map) {
-
+    public String getMovieByPagination(@Param("pageNumber") int pageNumber, ModelMap map) {
+        List<Movie> movies = movieRepository.findAllBy(new PageRequest(pageNumber, 5));
+        map.addAttribute("movies", movies);
         return "redirect:/movies";
     }
 }
