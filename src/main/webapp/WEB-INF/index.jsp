@@ -159,19 +159,19 @@
                                 user profile
                             </a></li>
                     </c:if>
-                    <c:if test="${currentUser != null}">
-                        <li class="dropdown first">
-                            <a href="/logout">
-                                LOGOUT
-                            </a></li>
-                    </c:if>
                 </ul>
+                <c:if test="${currentUser==null}">
                 <ul class="nav navbar-nav flex-child-menu menu-right">
-                    <c:if test="${currentUser==null}">
                         <li class="loginLink"><a href="index.html#">LOG In</a></li>
-                    </c:if>
-                    <li class="btn signupLink"><a href="index.html#">sign up</a></li>
+                        <li class="btn signupLink"><a href="index.html#">sign up</a></li>
                 </ul>
+                </c:if>
+
+                <c:if test="${currentUser!=null}">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                    </ul>
+                </c:if>
             </div>
         </nav>
     </div>

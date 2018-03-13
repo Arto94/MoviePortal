@@ -41,6 +41,11 @@ public class ActorController {
             List<Movie> movies = movieRepository.findAllByMovieActorsContaining(actor);
             map.addAttribute("actor", actor);
             map.addAttribute("movies", movies);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
+                CurrentUser principal = (CurrentUser) authentication.getPrincipal();
+                map.addAttribute("currentUser", principal.getUser());
+            }
             return "singleactor";
         } else {
             map.addAttribute("message","Actor Not Found");

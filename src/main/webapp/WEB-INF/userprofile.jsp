@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -73,7 +74,9 @@
                             blog
                         </a>
                     </li>
-
+                </ul>
+                <ul class="nav navbar-nav flex-child-menu menu-right">
+                    <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
                 </ul>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->

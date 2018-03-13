@@ -127,6 +127,11 @@
                             </a></li>
                     </c:if>
                 </ul>
+                <c:if test="${currentUser!=null}">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                    </ul>
+                </c:if>
             </div>
             <!-- /.navbar-collapse -->
         </nav>

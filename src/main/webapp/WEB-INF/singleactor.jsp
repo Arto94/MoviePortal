@@ -63,8 +63,34 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-child-menu menu-left">
-
+                    <li class="dropdown first">
+                        <a href="/movies">
+                            movies
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a href="/actors">
+                            celebrities
+                        </a>
+                    </li>
+                    <li class="dropdown first">
+                        <a href="/blog">
+                            blog
+                        </a>
+                    </li>
+                    <c:if test="${currentUser != null}">
+                        <li class="dropdown first">
+                            <a href="/Profile?userId=${currentUser.id}">
+                                user profile
+                            </a></li>
+                    </c:if>
                 </ul>
+                <c:if test="${currentUser!=null}">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                    </ul>
+                </c:if>
+
             </div>
             <!-- /.navbar-collapse -->
         </nav>
