@@ -92,9 +92,8 @@
                 </div>
             </div>
             <div class="flex-wrap-movielist grid-fav">
-
+                <c:forEach items="${favoriteMovies}" var="movie">
                 <div class="movie-item-style-2 movie-item-style-1 style-3">
-                    <c:forEach items="${favoriteMovies}" var="movie">
                     <img src="/image?fileName=${movie.picture}" alt="">
                     <div class="hvr-inner">
                         <a  href="/moviesingle?movieId=${movie.id}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
@@ -103,8 +102,8 @@
                         <h6>${movie.title}</h6>
                         <p class="rate"><i class="ion-android-star"></i><span>8.1</span> /10</p>
                     </div>
-                    </c:forEach>
                 </div>
+                </c:forEach>
 
             </div>
         </div>
