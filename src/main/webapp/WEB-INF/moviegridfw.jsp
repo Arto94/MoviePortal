@@ -139,13 +139,6 @@
                         </div>
                     </c:forEach>
                 </div>
-                <div class="topbar-filter">
-                    <div class="pagination2">
-                        <a href=/page?pageNumber=1>1</a>
-                        <a href=/page?pageNumber=2>2</a>
-                        <a href="moviegridfw.jsp#"><i class="ion-arrow-right-b"></i></a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -162,22 +162,4 @@ public class MovieController {
         return "movieActors";
     }
 
-
-//    @GetMapping("/page")
-//    public String getMovieByPagination(@Param("pageNumber") int pageNumber, ModelMap map) {
-//        List<Movie> movies = movieRepository.findAllBy(new PageRequest(pageNumber, 5));
-//        map.addAttribute("movies", movies);
-//        return "redirect:/movies";
-//    }
-
-   @GetMapping(value = "/page")
-    public String equipmentsMngr( ModelMap map,
-                                 @RequestParam(value = "page", defaultValue = "0") int page,
-                                 @RequestParam(value = "size", defaultValue = "2") int size) {
-       List<Movie> allBy = movieRepository.findAllBy(new PageRequest(page, size));
-        map.addAttribute("page", page);
-        map.addAttribute("size", size);
-        map.addAttribute("movies", allBy);
-        return "redirect:/movies";
-    }
 }
