@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.social.facebook.api.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -162,10 +163,21 @@ public class MovieController {
     }
 
 
-    @GetMapping("/page")
-    public String getMovieByPagination(@Param("pageNumber") int pageNumber, ModelMap map) {
-        List<Movie> movies = movieRepository.findAllBy(new PageRequest(pageNumber, 5));
-        map.addAttribute("movies", movies);
+//    @GetMapping("/page")
+//    public String getMovieByPagination(@Param("pageNumber") int pageNumber, ModelMap map) {
+//        List<Movie> movies = movieRepository.findAllBy(new PageRequest(pageNumber, 5));
+//        map.addAttribute("movies", movies);
+//        return "redirect:/movies";
+//    }
+
+   @GetMapping(value = "/page")
+    public String equipmentsMngr( ModelMap map,
+                                 @RequestParam(value = "page", defaultValue = "0") int page,
+                                 @RequestParam(value = "size", defaultValue = "2") int size) {
+       List<Movie> allBy = movieRepository.findAllBy(new PageRequest(page, size));
+        map.addAttribute("page", page);
+        map.addAttribute("size", size);
+        map.addAttribute("movies", allBy);
         return "redirect:/movies";
     }
 }

@@ -32,4 +32,5 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findAllBy(org.springframework.data.domain.Pageable pageable);
 
     List<Movie> findAllByUsersIsContaining(User user);
+
 }
