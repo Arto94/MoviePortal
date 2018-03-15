@@ -80,7 +80,7 @@
                     <c:if test="${currentUser != null}">
                         <li class="dropdown first">
                             <a href="/Profile?userId=${currentUser.id}">
-                                user profile
+                                My profile
                             </a></li>
                     </c:if>
                 </ul>
