@@ -116,13 +116,28 @@
                                                               placeholder="Surname" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
+                                                <spring:input path="description" cssClass="form-control"
+                                                              id="exampleInputEmail1"
+                                                              placeholder="Description" required="required"></spring:input>
+                                            </div>
+                                            <div class="form-group">
                                                 <spring:input path="nationality" cssClass="form-control"
                                                               id="exampleInputEmail1"
                                                               placeholder="Nationality" required="required"></spring:input>
                                             </div>
                                             <div class="form-group">
+                                                <spring:input path="city" cssClass="form-control"
+                                                              id="exampleInputEmail1"
+                                                              placeholder="City" required="required"></spring:input>
+                                            </div>
+                                            <div class="form-group">
                                                 <spring:input path="age" cssClass="form-control" id="exampleInputEmail1"
                                                               placeholder="Age"></spring:input>
+                                            </div>
+                                            <div class="form-group">
+                                                <spring:input path="birthday" cssClass="form-control"
+                                                              id="exampleInputEmail1"
+                                                              placeholder="Birthday" required="required"></spring:input>
                                             </div>
                                             <input type="file" name="actorImage">
                                             <button type="submit" class="btn btn-default">Add</button>
@@ -169,6 +184,7 @@
                                                 <spring:input path="age" cssClass="form-control" id="exampleInputEmail1"
                                                               placeholder="Age"></spring:input>
                                             </div>
+                                            <input type="file" name="picture">
                                             <button type="submit" class="btn btn-default">Add</button>
                                         </spring:form>
                                     </div>
@@ -290,19 +306,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="textInputDisabled" class="col-sm-2 control-label">Movie Time
-                                                    Minutes</label>
+                                                <label for="textInputDisabled" class="col-sm-2 control-label">Movie Time</label>
                                                 <div class="col-sm-10">
                                                     <spring:input path="movieTime" cssClass="form-control"
-                                                                  id="textInput" required="required"></spring:input>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label for="textInputDisabled"
-                                                       class="col-sm-2 control-label">Budget</label>
-                                                <div class="col-sm-10">
-                                                    <spring:input path="budget" cssClass="form-control"
                                                                   id="textInput" required="required"></spring:input>
                                                 </div>
                                             </div>
@@ -357,17 +363,6 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="col-sm-2 control-label">Company</label>
-                                                <div class="col-sm-10">
-                                                    <div class="checkbox">
-                                                        <spring:select path="company">
-                                                            <c:forEach items="${companies}" var="company">
-                                                                <spring:option
-                                                                        value="${company.id}">${company.name}</spring:option>
-                                                            </c:forEach>
-                                                        </spring:select>
-                                                    </div>
-                                                </div>
                                                 <input type="file" name="picture">
                                                 <button type="submit" class="btn btn-default">ADD</button>
                                             </div>

@@ -40,48 +40,75 @@
 </div>
 <!--end of preloading-->
 <!--login form popup-->
+
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
-        <a href="blogdetail.html#" class="close">x</a>
+        <a href="/home" class="close">x</a>
         <h3>Login</h3>
-        <form method="post" action="http://haintheme.com/demo/html/bustter/login.php">
+        <spring:form action="/login" modelAttribute="user" method="post">
             <div class="row">
-                <label for="username">
-                    Username:
-                    <input type="text" name="username" id="username" placeholder="Hugh Jackman"
-                           pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required"/>
+                <label>
+                    Email:
+                    <spring:input path="email" name="email"/>
                 </label>
             </div>
-
             <div class="row">
-                <label for="password">
+                <label>
                     Password:
-                    <input type="password" name="password" id="password" placeholder="******"
-                           pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                           required="required"/>
+                    <spring:password path="password" name="password" required="required"/>
                 </label>
             </div>
             <div class="row">
                 <div class="remember">
                     <div>
-                        <input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+                        <input type="checkbox" name="remember-me"><span>Remember me</span>
                     </div>
-                    <a href="blogdetail.html#">Forget password ?</a>
                 </div>
             </div>
             <div class="row">
                 <button type="submit">Login</button>
             </div>
-        </form>
-        <div class="row">
-            <p>Or via social</p>
-            <div class="social-btn-2">
-                <a class="fb" href="blogdetail.html#"><i class="ion-social-facebook"></i>Facebook</a>
-                <a class="tw" href="blogdetail.html#"><i class="ion-social-twitter"></i>twitter</a>
-            </div>
-        </div>
+        </spring:form>
     </div>
 </div>
+<div class="login-wrapper" id="signup-content">
+    <div class="login-content">
+        <a href="index.html#" class="close">x</a>
+        <h3>sign up</h3>
+        <spring:form action="/addUser" modelAttribute="user" method="post" enctype="multipart/form-data">
+            <div class="row">
+                Name:
+                <label>
+                    <spring:input path="name" title="name" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                your surname:
+                <label>
+                    <spring:input path="surname" title="surname" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                your email:
+                <label>
+                    <spring:input path="email" title="email" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                Password:
+                <label>
+                    <spring:password path="password" title="password" required="required"/><br>
+                </label>
+            </div>
+
+            <input type="file" name="picture">
+            <div class="row">
+                <button type="submit">sign up</button>
+            </div>
+        </spring:form>
+    </div>
+</div>
+
 <!--end of login form popup-->
 <!--signup form popup-->
 <!--end of signup form popup-->
@@ -127,6 +154,12 @@
                             </a></li>
                     </c:if>
                 </ul>
+                <c:if test="${currentUser==null}">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li class="loginLink"><a href="index.html#">LOG In</a></li>
+                        <li class="btn signupLink"><a href="index.html#">sign up</a></li>
+                    </ul>
+                </c:if>
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
                         <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>

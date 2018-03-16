@@ -3,6 +3,7 @@ package com.movieportal.movieportal.controller;
 import com.movieportal.movieportal.model.Blog;
 import com.movieportal.movieportal.model.BlogComment;
 import com.movieportal.movieportal.model.Comment;
+import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.BlogCommentRepository;
 import com.movieportal.movieportal.repository.BlogRepository;
 import com.movieportal.movieportal.security.CurrentUser;
@@ -33,6 +34,7 @@ public class BlogController {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
             map.addAttribute("currentUser", principal.getUser());
         }
+        map.addAttribute("user", new User());
         return "bloglist";
     }
 
@@ -46,6 +48,7 @@ public class BlogController {
             map.addAttribute("model", new BlogComment());
         }
         map.addAttribute("blogComments", blogCommentRepository.findAllByBlogId(id));
+        map.addAttribute("user", new User());
         return "blogdetail";
     }
 

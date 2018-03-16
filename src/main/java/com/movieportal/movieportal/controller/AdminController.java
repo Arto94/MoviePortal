@@ -150,17 +150,7 @@ public class AdminController {
 
     @PostMapping(value = "/admin/addMovie")
     public String addMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult result, @RequestParam("picture") MultipartFile multipartFile, @RequestParam("movieGenres") String movieGenres, @RequestParam("movieActors") String movieActors, @RequestParam("movieDirectors") String movieDirectors) throws IOException {
-        int size = 0;
-        StringBuilder sb = new StringBuilder();
-        if (result.hasErrors()) {
-            for (ObjectError objectError : result.getAllErrors()) {
-                if (size > 0) {
-                    sb.append(objectError.getDefaultMessage() + "<br>");
-                }
-                size++;
-            }
-            return "redirect:/admin/basicFormElements?movieMessage=" + sb.toString();
-        }
+
         String picName = System.currentTimeMillis() + "_" + multipartFile.getOriginalFilename();
         File file = new File(imageUploadPath + picName);
         multipartFile.transferTo(file);

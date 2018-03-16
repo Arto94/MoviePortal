@@ -33,4 +33,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     List<Movie> findAllByUsersIsContaining(User user);
 
+    List<Movie> findAllByYear(int year);
+
 }

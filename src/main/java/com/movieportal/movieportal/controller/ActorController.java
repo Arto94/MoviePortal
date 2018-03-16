@@ -2,6 +2,7 @@ package com.movieportal.movieportal.controller;
 
 import com.movieportal.movieportal.model.Actor;
 import com.movieportal.movieportal.model.Movie;
+import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.ActorRepository;
 import com.movieportal.movieportal.repository.MovieRepository;
 import com.movieportal.movieportal.security.CurrentUser;
@@ -26,6 +27,7 @@ public class ActorController {
     public String getActors(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
         map.addAttribute("actors", actorRepository.findAll());
         map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
+        map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
@@ -46,6 +48,7 @@ public class ActorController {
                 CurrentUser principal = (CurrentUser) authentication.getPrincipal();
                 map.addAttribute("currentUser", principal.getUser());
             }
+            map.addAttribute("user", new User());
             return "singleactor";
         } else {
             map.addAttribute("message","Actor Not Found");

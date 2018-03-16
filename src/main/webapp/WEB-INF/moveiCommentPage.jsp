@@ -86,6 +86,73 @@
 <!--signup form popup-->
 <!--end of signup form popup-->
 
+<div class="login-wrapper" id="login-content">
+    <div class="login-content">
+        <a href="/home" class="close">x</a>
+        <h3>Login</h3>
+        <spring:form action="/login" modelAttribute="user" method="post">
+            <div class="row">
+                <label>
+                    Email:
+                    <spring:input path="email" name="email"/>
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    Password:
+                    <spring:password path="password" name="password" required="required"/>
+                </label>
+            </div>
+            <div class="row">
+                <div class="remember">
+                    <div>
+                        <input type="checkbox" name="remember-me"><span>Remember me</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit">Login</button>
+            </div>
+        </spring:form>
+    </div>
+</div>
+<div class="login-wrapper" id="signup-content">
+    <div class="login-content">
+        <a href="index.html#" class="close">x</a>
+        <h3>sign up</h3>
+        <spring:form action="/addUser" modelAttribute="user" method="post" enctype="multipart/form-data">
+            <div class="row">
+                Name:
+                <label>
+                    <spring:input path="name" title="name" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                your surname:
+                <label>
+                    <spring:input path="surname" title="surname" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                your email:
+                <label>
+                    <spring:input path="email" title="email" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                Password:
+                <label>
+                    <spring:password path="password" title="password" required="required"/><br>
+                </label>
+            </div>
+
+            <input type="file" name="picture">
+            <div class="row">
+                <button type="submit">sign up</button>
+            </div>
+        </spring:form>
+    </div>
+</div>
 <!-- BEGIN | Header -->
 <header class="ht-header">
     <div class="container">
@@ -127,6 +194,12 @@
                             </a></li>
                     </c:if>
                 </ul>
+                <c:if test="${currentUser==null}">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li class="loginLink"><a href="index.html#">LOG In</a></li>
+                        <li class="btn signupLink"><a href="index.html#">sign up</a></li>
+                    </ul>
+                </c:if>
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
                         <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>

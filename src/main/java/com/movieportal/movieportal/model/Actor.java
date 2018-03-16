@@ -29,8 +29,17 @@ public class Actor {
     @Column
     private int age;
 
-    @Column(name = "all_movie_count")
-    private int moviesCount;
+    @NotEmpty(message = "description is empty")
+    @Column
+    private String description;
+
+    @Column
+    @NotEmpty(message = "city is empty")
+    private String city;
+
+    @Column
+    @NotEmpty(message = "birthdat is empty")
+    private String birthday;
 
     @Column
     @NotEmpty(message = "nationality is empty")

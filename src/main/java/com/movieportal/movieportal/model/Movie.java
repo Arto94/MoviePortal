@@ -31,16 +31,9 @@ public class Movie {
     @Column
     private int year;
 
-    @Column(name = "create_date")
-    private String createDate;
-
     @Column
     @NotEmpty(message = "country is empty")
     private String country;
-
-    @Column
-    @NotEmpty(message = "budget is empty")
-    private String budget;
 
     @Column(name = "movie_time")
     @NotEmpty(message = "movie time is empty")
@@ -49,8 +42,8 @@ public class Movie {
     @Column
     private String picture;
 
-    @ManyToOne
-    private Company company;
+    @Column(name = "imdb_rate")
+    private String imdbRate;
 
     @Column(name = "movie_trailer")
     private String movieTrailer;
@@ -86,12 +79,9 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", year=" + year +
-                ", createDate='" + createDate + '\'' +
                 ", country='" + country + '\'' +
-                ", budget='" + budget + '\'' +
                 ", movieTime='" + movieTime + '\'' +
                 ", picture='" + picture + '\'' +
-                ", company=" + company +
                 ", movieTrailer='" + movieTrailer + '\'' +
                 ", movieGenres=" + movieGenres +
                 ", movieActors=" + movieActors +

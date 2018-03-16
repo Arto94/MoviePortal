@@ -34,7 +34,7 @@ public class Director {
     @Column
     private int age;
 
-    @Column(name = "all_movie_count")
-    private int moviesCount;
+    @Column
+    private String picture;
 
 }

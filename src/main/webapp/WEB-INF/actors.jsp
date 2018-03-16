@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <!--[if IE 7]>
 <html class="ie ie7 no-js" lang="en-US">
@@ -35,6 +36,75 @@
     <div id="status">
         <span></span>
         <span></span>
+    </div>
+</div>
+
+
+<div class="login-wrapper" id="login-content">
+    <div class="login-content">
+        <a href="/home" class="close">x</a>
+        <h3>Login</h3>
+        <spring:form action="/login" modelAttribute="user" method="post">
+            <div class="row">
+                <label>
+                    Email:
+                    <spring:input path="email" name="email"/>
+                </label>
+            </div>
+            <div class="row">
+                <label>
+                    Password:
+                    <spring:password path="password" name="password" required="required"/>
+                </label>
+            </div>
+            <div class="row">
+                <div class="remember">
+                    <div>
+                        <input type="checkbox" name="remember-me"><span>Remember me</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit">Login</button>
+            </div>
+        </spring:form>
+    </div>
+</div>
+<div class="login-wrapper" id="signup-content">
+    <div class="login-content">
+        <a href="index.html#" class="close">x</a>
+        <h3>sign up</h3>
+        <spring:form action="/addUser" modelAttribute="user" method="post" enctype="multipart/form-data">
+            <div class="row">
+                Name:
+                <label>
+                    <spring:input path="name" title="name" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                your surname:
+                <label>
+                    <spring:input path="surname" title="surname" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                your email:
+                <label>
+                    <spring:input path="email" title="email" required="required"/><br>
+                </label>
+            </div>
+            <div class="row">
+                Password:
+                <label>
+                    <spring:password path="password" title="password" required="required"/><br>
+                </label>
+            </div>
+
+            <input type="file" name="picture">
+            <div class="row">
+                <button type="submit">sign up</button>
+            </div>
+        </spring:form>
     </div>
 </div>
 
@@ -76,6 +146,12 @@
                         </li>
                     </c:if>
                 </ul>
+                <c:if test="${currentUser==null}">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
+                        <li class="loginLink"><a href="index.html#">LOG In</a></li>
+                        <li class="btn signupLink"><a href="index.html#">sign up</a></li>
+                    </ul>
+                </c:if>
                 <c:if test="${currentUser!=null}">
                 <ul class="nav navbar-nav flex-child-menu menu-right">
                     <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
@@ -124,7 +200,7 @@
                     <div class="col-md-4">
 
                         <div class="ceb-item-style-2">
-                                <img src="/image?fileName=${actor.pic}" alt="">
+                                <img width="100" height="100" src="/image?fileName=${actor.pic}" alt="">
                                 <div class="ceb-infor">
                                     <h2>
                                         <a href="/singleActor?actorId=${actor.id}">${actor.name}&nbsp;${actor.surname}</a>
@@ -136,18 +212,7 @@
                     </div>
                     </c:forEach>
                 </div>
-                <div class="topbar-filter">
-                    <div class="pagination2">
-                        <span>Page 1 of 6:</span>
-                        <a class="active" href="celebritygrid02.html#">1</a>
-                        <a href="celebritygrid02.html#">2</a>
-                        <a href="celebritygrid02.html#">3</a>
-                        <a href="celebritygrid02.html#">4</a>
-                        <a href="celebritygrid02.html#">5</a>
-                        <a href="celebritygrid02.html#">6</a>
-                        <a href="celebritygrid02.html#"><i class="ion-arrow-right-b"></i></a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

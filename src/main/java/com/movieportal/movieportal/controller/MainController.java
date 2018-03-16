@@ -36,8 +36,14 @@ public class MainController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
-        List<Movie> movies = movieRepository.orderByCreatedDate();
-        map.addAttribute("movies", movies);
+        List<Movie> movies = movieRepository.findAll();
+        Random random = new Random();
+        int number = random.nextInt(movies.size());
+        if(number>=0 && number <= movies.size()/2) {
+            map.addAttribute("movies", movies.subList(number, number + 4));
+        }else {
+            map.addAttribute("movies",movies.subList(number-4,number));
+        }
         map.addAttribute("user", new User());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
