@@ -200,10 +200,10 @@
                     <div class="col-md-4">
 
                         <div class="ceb-item-style-2">
-                                <img class="imgactornkar" src="/image?fileName=${actor.pic}" alt="">
+                                <a href="/singleActor?actorId=${actor.id}"><img class="imgactornkar" src="/image?fileName=${actor.pic}" alt=""></a>
                                 <div class="ceb-infor">
                                     <h2>
-                                        <a href="/singleActor?actorId=${actor.id}">${actor.name}&nbsp;${actor.surname}</a>
+                                        <a href="/singleActor?actorId=${actor.id}"><p class="actornamestyle">${actor.name}&nbsp;${actor.surname}</p></a>
                                     </h2>
                                     <span>actor,${actor.nationality}</span>
                                 </div>
