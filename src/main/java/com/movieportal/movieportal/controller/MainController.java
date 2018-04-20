@@ -4,6 +4,7 @@ package com.movieportal.movieportal.controller;
 import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
 import com.movieportal.movieportal.repository.MovieRepository;
+import com.movieportal.movieportal.repository.UserRepository;
 import com.movieportal.movieportal.security.CurrentUser;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class MainController {
 
     @Autowired
     private MovieRepository movieRepository;
+
     @Value("${movieportal.product.upload.path}")
     private String imageUploadPath;
 
@@ -39,10 +41,10 @@ public class MainController {
         List<Movie> movies = movieRepository.findAll();
         Random random = new Random();
         int number = random.nextInt(movies.size());
-        if(number>=0 && number <= movies.size()/2) {
+        if (number >= 0 && number <= movies.size() / 2) {
             map.addAttribute("movies", movies.subList(number, number + 4));
-        }else {
-            map.addAttribute("movies",movies.subList(number-4,number));
+        } else {
+            map.addAttribute("movies", movies.subList(number - 4, number));
         }
         map.addAttribute("user", new User());
 
@@ -69,8 +71,21 @@ public class MainController {
 
     @GetMapping("/404")
     public String Page404(ModelMap map) {
-        map.addAttribute("message", "Please verify Your Account");
+        map.addAttribute("message", "Page Not Found");
         return "404";
+    }
+
+    @GetMapping("/403")
+    public String Page403(ModelMap map) {
+        map.addAttribute("message", "Acces Denied");
+        return "403";
+    }
+
+    @GetMapping("/402")
+    public String Page402(ModelMap map) {
+        map.addAttribute("message", "No Account in this email if you register verify your account");
+        return "404";
+
     }
 }
 

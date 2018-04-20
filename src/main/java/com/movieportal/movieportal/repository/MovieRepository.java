@@ -20,7 +20,7 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
 
     Movie findByTitle(String title);
 
-    List<Movie> findAllByTitleContaining(String word);
+    List<Movie> findAllByTitleLike(String word);
 
     Movie findById(int movieId);
 
@@ -34,5 +34,6 @@ public interface MovieRepository extends JpaRepository<Movie, Integer> {
     List<Movie> findAllByUsersIsContaining(User user);
 
     List<Movie> findAllByYear(int year);
+
 
 }

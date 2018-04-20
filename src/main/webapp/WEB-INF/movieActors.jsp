@@ -40,6 +40,7 @@
 </div>
 
 
+
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="/home" class="close">x</a>
@@ -107,11 +108,6 @@
         </spring:form>
     </div>
 </div>
-<!--end of preloading-->
-<!--login form popup-->
-<!--end of login form popup-->
-<!--signup form popup-->
-<!--end of signup form popup-->
 
 <!-- BEGIN | Header -->
 <header class="ht-header">

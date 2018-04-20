@@ -33,6 +33,7 @@ public class ActorController {
             CurrentUser principal = (CurrentUser) authentication.getPrincipal();
             map.addAttribute("currentUser", principal.getUser());
         }
+        map.addAttribute("user", new User());
         return "actors";
     }
 
@@ -71,6 +72,7 @@ public class ActorController {
                     return "redirect:/actors?errorMessage=No Actor in this Name";
                 } else {
                     map.addAttribute("actors", actorsContains);
+                    map.addAttribute("user", new User());
                     return "actors";
                 }
             }

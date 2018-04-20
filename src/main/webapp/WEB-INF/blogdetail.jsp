@@ -271,7 +271,7 @@
 <script>
     setInterval(function () {
         $.ajax({
-            url: "http://localhost:8080/getBlogComments?blogId=${blog.id}",
+            url: "http://localhost:8088/getBlogComments?blogId=${blog.id}",
             success: function (result) {
                 $("#blogComments").html(result);
             }

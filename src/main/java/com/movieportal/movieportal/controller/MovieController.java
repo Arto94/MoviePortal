@@ -103,11 +103,13 @@ public class MovieController {
         if (movie != null) {
             return "redirect:/moviesingle?movieId=" + movie.getId();
         } else {
-            List<Movie> movies = movieRepository.findAllByTitleContaining(filmName);
+            List<Movie> movies = movieRepository.findAllByTitleLike(filmName+"%");
             if (movies.size() == 0) {
                 return "redirect:/movies?errorMessage=No Film in this Name";
             } else {
                 map.addAttribute("movies", movies);
+                map.addAttribute("user", new User());
+                map.addAttribute("genres", genreRepository.findAll());
                 return "moviegridfw";
             }
         }

@@ -46,7 +46,7 @@
 		<div class="row">
 			<div class="middle-content">
 				<a href="/home"><img class="md-logo" src="images/logo1.png" alt=""></a>
-				<img src="../images/uploads/err-img.png" alt="">
+				<img src="../images/uploads/403ACC.jpg" alt="">
 				<h1>${message}</h1>
 				<a href="/home" class="redbtn">go home</a>
 			</div>

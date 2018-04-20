@@ -74,11 +74,6 @@
         </spring:form>
     </div>
 </div>
-
-
-<!--end of login form popup-->
-<!--signup form popup-->
-
 <div class="login-wrapper" id="signup-content">
     <div class="login-content">
         <a href="index.html#" class="close">x</a>
