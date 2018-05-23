@@ -25,24 +25,19 @@
     <meta name="format-detection" content="telephone-no">
 
     <!-- CSS files -->
-    <link rel="stylesheet" href="../css/plugins.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-<div style="background-color: black"><p style="color: red">${message}</p></div>
-
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="../images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
     </div>
 </div>
-<!--end of preloading-->
-<!--login form popup-->
-
 
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
@@ -111,10 +106,6 @@
         </spring:form>
     </div>
 </div>
-<!--end of signup form popup-->
-
-<!-- BEGIN | Header -->
-
 <header class="ht-header">
     <div class="container">
         <nav class="navbar navbar-default navbar-custom">
@@ -130,7 +121,6 @@
                 </div>
                 <a href="/home"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-child-menu menu-left">
                     <li class="dropdown first">
@@ -150,47 +140,52 @@
                     </li>
                     <c:if test="${currentUser != null}">
                         <li class="dropdown first">
-                            <a href="/Profile?userId=${currentUser.id}">
-                                My profile
-                            </a></li>
+                            <a href="/Profile?userId=${currentUser.id}">My profile</a>
+                        </li>
                     </c:if>
                 </ul>
                 <c:if test="${currentUser==null}">
-                <ul class="nav navbar-nav flex-child-menu menu-right">
+                    <ul class="nav navbar-nav flex-child-menu menu-right">
                         <li class="loginLink"><a href="index.html#">LOG In</a></li>
                         <li class="btn signupLink"><a href="index.html#">sign up</a></li>
-                </ul>
+                    </ul>
                 </c:if>
-
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
-                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                        <li><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
                     </ul>
                 </c:if>
             </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- /.navbar-collapse -->
         </nav>
+
+        <!-- top search form -->
     </div>
 </header>
-
 
 <div class="slider movie-items">
     <div class="container">
         <div class="row">
-            <div class="social-link">
-                <p>Follow us: </p>
-                <a href="https://www.facebook.com/profile.php?id=100014146627749&ref=bookmarks" target="_blank"><i
-                        class="ion-social-facebook"></i></a>
-                <a href="https://www.youtube.com/channel/UClT72GC4q6kDJjBchRdUAsg?view_as=subscriber" target="_blank"><i
-                        class="ion-social-youtube"></i></a>
-            </div>
+
             <div class="slick-multiItemSlider">
                 <c:forEach items="${movies}" var="movie">
                     <div class="movie-item">
                         <div class="mv-img">
-                            <img src="/image?fileName=${movie.picture}" alt="" width="285" height="437">
+                            <a href="/moviesingle?movieId=${movie.id}"><img src="/image?fileName=${movie.picture}"
+                                                                            alt="" width="285" height="400"></a>
                         </div>
                         <div class="title-in">
+                            <div class="cate">
+                                <span class="blue">
+                                    <c:forEach items="${movie.movieGenres}" var="movieGenre">
+                                        <a href="#">${movieGenre.name}</a>
+                                    </c:forEach>
+                                </span>
+                            </div>
                             <h6><a href="/moviesingle?movieId=${movie.id}">${movie.title}</a></h6>
+                            <p><i class="ion-android-star"></i><span>${movie.imdbRate}</span> /10</p>
                         </div>
                     </div>
                 </c:forEach>
@@ -198,13 +193,75 @@
         </div>
     </div>
 </div>
+<div class="movie-items">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-8">
+
+                <div class="title-hd">
+                    <h2>on tv</h2>
+                    <a href="/movies" class="viewall">View all <i class="ion-ios-arrow-right"></i></a>
+                </div>
+                <div class="tabs">
+                    <ul class="tab-links-2">
+                        <li class="active"><a href="index.jsp#tab22"> #Top Rated</a></li>
+
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab22" class="tab active">
+                            <div class="row">
+                                <div class="slick-multiItem">
+                                    <c:forEach items="${ratedMovies}" var="rateMovie">
+                                    <div class="slide-it">
+                                        <div class="movie-item">
+                                            <div class="mv-img">
+                                                <img src="/image?fileName=${rateMovie.picture}" alt="" width="185" height="284">
+                                            </div>
+                                            <div class="hvr-inner">
+                                                <a href="/moviesingle?movieId=${rateMovie.id}"> Read more <i
+                                                        class="ion-android-arrow-dropright"></i> </a>
+                                            </div>
+                                            <div class="title-in">
+                                                <h6><a href="/moviesingle?movieId=${rateMovie.id}">${rateMovie.title}</a></h6>
+                                                <p><i class="ion-android-star"></i><span>${rateMovie.imdbRate}</span> /10</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <div class="celebrities">
+                        <h4 class="sb-title">Celebrities</h4>
+                        <c:forEach items="${actors}" var="actor">
+                        <div class="celeb-item">
+                            <a href="/singleActor?actorId=${actor.id}"><img src="/image?fileName=${actor.pic}" alt="" width="70" height="70"></a>
+                            <div class="celeb-author">
+                                <h6><a href="/singleActor?actorId=${actor.id}">${actor.name} ${actor.surname}</a></h6>
+                                <span>Actor</span>
+                            </div>
+                        </div>
+                        </c:forEach>
+                        <a href="/actors" class="btn">See all celebrities<i class="ion-ios-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="trailers">
     <div class="container">
         <div class="row ipad-width">
             <div class="col-md-12">
                 <div class="title-hd">
                     <h2>in theater</h2>
-                    <a href="/movies" class="viewall">View all Movies <i class="ion-ios-arrow-right"></i></a>
                 </div>
                 <div class="videos">
                     <div class="slider-for-2 video-ft">
@@ -238,7 +295,7 @@
                     <div class="slider-nav-2 thumb-ft">
                         <div class="item">
                             <div class="trailer-img">
-                                <img src="../images/uploads/trailer7.jpg" alt="photo by Barn Images" width="4096"
+                                <img src="images/uploads/trailer7.jpg" alt="photo by Barn Images" width="4096"
                                      height="2737">
                             </div>
                             <div class="trailer-infor">
@@ -248,7 +305,7 @@
                         </div>
                         <div class="item">
                             <div class="trailer-img">
-                                <img src="../images/uploads/trailer2.jpg" alt="photo by Barn Images" width="350"
+                                <img src="images/uploads/trailer2.jpg" alt="photo by Barn Images" width="350"
                                      height="200">
                             </div>
                             <div class="trailer-infor">
@@ -258,7 +315,7 @@
                         </div>
                         <div class="item">
                             <div class="trailer-img">
-                                <img src="../images/uploads/trailer6.jpg" alt="photo by Joshua Earle">
+                                <img src="images/uploads/trailer6.jpg" alt="photo by Joshua Earle">
                             </div>
                             <div class="trailer-infor">
                                 <h4 class="desc">Exclusive Interview: Skull Island</h4>
@@ -267,7 +324,7 @@
                         </div>
                         <div class="item">
                             <div class="trailer-img">
-                                <img src="../images/uploads/trailer3.png" alt="photo by Alexander Dimitrov" width="100"
+                                <img src="images/uploads/trailer3.png" alt="photo by Alexander Dimitrov" width="100"
                                      height="56">
                             </div>
                             <div class="trailer-infor">
@@ -277,7 +334,7 @@
                         </div>
                         <div class="item">
                             <div class="trailer-img">
-                                <img src="../images/uploads/trailer4.png" alt="photo by Wojciech Szaturski" width="100"
+                                <img src="images/uploads/trailer4.png" alt="photo by Wojciech Szaturski" width="100"
                                      height="56">
                             </div>
                             <div class="trailer-infor">
@@ -287,7 +344,7 @@
                         </div>
                         <div class="item">
                             <div class="trailer-img">
-                                <img src="../images/uploads/trailer5.jpg" alt="photo by Wojciech Szaturski" width="360"
+                                <img src="images/uploads/trailer5.jpg" alt="photo by Wojciech Szaturski" width="360"
                                      height="189">
                             </div>
                             <div class="trailer-infor">
@@ -295,6 +352,7 @@
                                 <p>3:11</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -302,7 +360,44 @@
     </div>
 </div>
 <!-- latest new v1 section-->
+<div class="latestnew">
+    <div class="container">
+        <div class="row ipad-width">
+            <div class="col-md-8">
+                <div class="ads">
+                    <img src="images/uploads/ads2.png" alt="" width="728" height="106">
+                </div>
+                <div class="title-hd">
+                    <h2>Latest news</h2>
+                </div>
+                <div class="tabs">
 
+                    <div class="tab-content">
+                        <div id="tab31" class="tab active">
+                            <div class="row">
+                                <div class="blog-item-style-1">
+                                    <img src="/image?fileName=${blog.picture}" alt="" width="170" height="250">
+                                    <div class="blog-it-infor">
+                                        <h3><a href="/blogDetail?id=${blog.id}">${blog.name}</a></h3>
+                                        <span class="time">${blog.date}</span>
+                                        <p>Exclusive: ${blog.description}...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="morenew">
+                    <div class="title-hd">
+                        <a href="/blog" class="viewall">See all Movies news<i class="ion-ios-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+</div>
 <!--end of latest new v1 section-->
 <!-- footer section-->
 <footer class="ht-footer">
@@ -327,9 +422,10 @@
     </div>
 </footer>
 <!-- end of footer section-->
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.js"></script>
-<script src="../js/plugins2.js"></script>
-<script src="../js/custom.js"></script>
+
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

@@ -10,30 +10,35 @@
 <!--[if !(IE 7) | !(IE 8) ]><!-->
 <html lang="en" class="no-js">
 <head>
+    <!-- Basic need -->
     <title>Open Pediatrics</title>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="profile" href="moviegridfw.jsp#">
+    <link rel="profile" href="movielist.html#">
 
+    <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600'/>
+    <!-- Mobile specific meta -->
     <meta name=viewport content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone-no">
 
-    <link rel="stylesheet" href="../css/plugins.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- CSS files -->
+    <link rel="stylesheet" href="css/plugins.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
-
+<!--preloading-->
 <div id="preloader">
-    <img class="logo" src="../images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
     </div>
 </div>
+<!--end of preloading-->
 
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
@@ -102,10 +107,10 @@
         </spring:form>
     </div>
 </div>
-
 <header class="ht-header">
     <div class="container">
         <nav class="navbar navbar-default navbar-custom">
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header logo">
                 <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -136,9 +141,8 @@
                     </li>
                     <c:if test="${currentUser != null}">
                         <li class="dropdown first">
-                            <a href="/Profile?userId=${currentUser.id}">
-                                My profile
-                            </a></li>
+                            <a href="/Profile?userId=${currentUser.id}">My profile</a>
+                        </li>
                     </c:if>
                 </ul>
                 <c:if test="${currentUser==null}">
@@ -149,30 +153,16 @@
                 </c:if>
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
-                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                        <li><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
                     </ul>
                 </c:if>
             </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <!-- /.navbar-collapse -->
         </nav>
 
-
-        <span style="color:red;">${errorMessage}</span>
-        <div class="top-search">
-            <spring:form action="/selectByGenre" method="get" modelAttribute="genre">
-                <label for="searches"><p style="color: #BD081C">Select genre</p></label>
-                <select name="genreid">
-                    <c:forEach items="${genres}" var="genre">
-                        <option value="${genre.id}">${genre.name}</option>
-                    </c:forEach>
-                </select>
-                <button class="btn btn-search" type="submit">Search</button>
-            </spring:form>
-            <form action="/searchMovie" style="margin-left: 75%">
-                <label for="searches"><p style="color: #BD081C">Movie Title</p></label>
-                <input id="searches" name="filmName" type="text" placeholder="Search for a movie">
-                <button class="btn btn-search" type="submit">Search</button>
-            </form>
-        </div>
+        <!-- top search form -->
     </div>
 </header>
 
@@ -181,7 +171,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1>Movie Listing</h1>
+                    <h1> movie listing - list</h1>
                     <ul class="breadcumb">
                         <li class="active"><a href="/home">Home</a></li>
                         <li><span class="ion-ios-arrow-right"></span> movie listing</li>
@@ -191,32 +181,116 @@
         </div>
     </div>
 </div>
-<div class="page-single">
+<div class="page-single movie_list">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="topbar-filter fw">
-                    <p>Found <span>${movies.size()}</span> in total</p>
-                </div>
-                <div class="flex-wrap-movielist mv-grid-fw">
-                    <c:forEach items="${movies}" var="movie">
-                        <div class="movie-item-style-2 movie-item-style-1">
+        <div class="row ipad-width2">
+            <div class="col-md-8 col-sm-12 col-xs-12">
+                <div class="topbar-filter">
+                    <p>Found <span>${moviesCount} movies</span> in total</p>
 
-                            <img src="/image?fileName=${movie.picture}" alt="">
-                            <div class="hvr-inner">
-                                <a href="/moviesingle?movieId=${movie.id}"> Read more <i
-                                        class="ion-android-arrow-dropright"></i> </a>
-                            </div>
-                            <div class="mv-item-infor">
-                                <h6>${movie.title}</h6>
-                            </div>
+                    <a href="#" class="list"><i class="ion-ios-list-outline active"></i></a>
+                    <a href="/movies?n=1" class="grid"><i class="ion-grid"></i></a>
+                </div>
+                <c:forEach items="${movies}" var="movie">
+                    <div class="movie-item-style-2">
+                        <img src="/image?fileName=${movie.picture}" alt="">
+                        <div class="mv-item-infor">
+                            <h6><a href="/moviesingle?movieId=${movie.id}">${movie.title} <span>(${movie.year})</span></a></h6>
+                            <p class="rate"><i class="ion-android-star"></i><span>${movie.imdbRate}</span> /10</p>
+                            <p class="describe">${movie.description}</p>
+                            <p class="run-time"> Run Time: ${movie.movieTime}
+                                <span>
+                                    <c:forEach items="${movie.movieGenres}" var="genre">
+                                        ${genre.name}
+                                    </c:forEach>
+                                </span>
+                            </p>
+                            <p>Director: ${movie.movieDirectors.get(0).name} ${movie.movieDirectors.get(0).surname}</p>
+                            <p>Stars:
+                                <c:forEach items="${movie.movieActors}" var="actor">
+                                    <a href="/singleActor?actorId=${actor.id}">${actor.name} ${actor.surname}</a>
+                                </c:forEach>
+                            </p>
                         </div>
-                    </c:forEach>
+                    </div>
+                </c:forEach>
+                <div class="topbar-filter">
+                    <label>Movies per page:</label>
+                    <select>
+                        <option value="range">4 Movies</option>
+                    </select>
+
+                    <div class="pagination2">
+                        <span>Page ${index+1} of ${pagesCount.size()}:</span>
+                        <c:forEach items="${pagesCount}" var="number">
+                            <a href="/movies?page=${number}">${number+1}</a>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="searh-form">
+                        <h4 class="sb-title">Search for movie</h4>
+                        <form class="form-style-1" action="/searchMovie">
+                            <div class="row">
+                                <div class="col-md-12 form-it">
+                                    <label>Movie name</label>
+                                    <input name="filmName" type="text" placeholder="Enter keywords">
+                                </div>
+                                <div class="col-md-12 form-it">
+                                    <label>Genre</label>
+                                    <div class="group-ip">
+                                        <select  name="genreName"  class="ui fluid dropdown">
+                                            <option value=""></option>
+                                            <c:forEach items="${genres}" var="genr">
+                                            <option value="${genr.name}">${genr.name}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 form-it">
+                                    <label>Release Year</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input name="year" type="number">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input class="submit" type="submit" value="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="sidebar">
+                    <div class="searh-form">
+                        <h4 class="sb-title">Sort by</h4>
+                        <form class="form-style-1" action="/sortMovie" method="get">
+                            <div class="row">
+                                <div class="col-md-12 form-it">
+                                    <div class="group-ip">
+                                        <select  name="sort"  class="ui fluid dropdown">
+                                            <option value="0"></option>
+                                            <option value="2">Rate</option>
+                                            <option value="1">Year</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input class="submit" type="submit" value="submit">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- footer section-->
 <footer class="ht-footer">
     <div class="container">
         <div class="flex-parent-ft">
@@ -238,9 +312,11 @@
         </div>
     </div>
 </footer>
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.js"></script>
-<script src="../js/plugins2.js"></script>
-<script src="../js/custom.js"></script>
+<!-- end of footer section-->
+
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

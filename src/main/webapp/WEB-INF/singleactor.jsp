@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="profile" href="singleactor.jsp#">
+    <link rel="profile" href="celebritysingle.html#">
 
     <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600'/>
@@ -32,17 +32,12 @@
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="../images/logo1.png" alt="" width="119" height="58">
+    <img class="logo" src="images/logo1.png" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
     </div>
 </div>
-<!--end of preloading-->
-
-
-<!--end of login form popup-->
-<!--signup form popup-->
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="/home" class="close">x</a>
@@ -110,8 +105,6 @@
         </spring:form>
     </div>
 </div>
-
-<!-- BEGIN | Header -->
 <header class="ht-header">
     <div class="container">
         <nav class="navbar navbar-default navbar-custom">
@@ -158,19 +151,16 @@
                         <li class="btn signupLink"><a href="index.html#">sign up</a></li>
                     </ul>
                 </c:if>
+
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
-                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                        <li><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
                     </ul>
                 </c:if>
-
             </div>
-            <!-- /.navbar-collapse -->
         </nav>
     </div>
 </header>
-<!-- END | Header -->
-
 <div class="hero hero3">
     <div class="container">
         <div class="row">
@@ -196,50 +186,82 @@
             </div>
             <div class="col-md-8 col-sm-12 col-xs-12">
                 <div class="movie-single-ct">
-                    <h1 class="bd-hd">${actor.name} ${actor.surname}</h1>
-                    <p class="ceb-single">${actor.city} ${actor.nationality}</p>
-                    <p class="ceb-single">Birthday  ${actor.birthday}</p>
-                    <p class="ceb-single">Age  ${actor.age}</p>
+                    <h1 class="bd-hd">${actor.name} ${actor.surname} </h1>
+                    <p class="ceb-single">Nationality - ${actor.nationality} </p>
+                    <p class="ceb-single">Date Of Birth - ${actor.birthday}</p>
+                    <p class="ceb-single">City - ${actor.city}</p>
+
                     <div class="movie-tabs">
                         <div class="tabs">
+                            <ul class="tab-links tabs-mv">
+                                <li class="active"><a href="celebritysingle.html#overviewceb">Overview</a></li>
+                                <li><a href="celebritysingle.html#biography"> biography</a></li>
+                                <li><a href="celebritysingle.html#mediaceb"> Media</a></li>
+                                <li><a href="celebritysingle.html#filmography">filmography</a></li>
+                            </ul>
                             <div class="tab-content">
                                 <div id="overviewceb" class="tab active">
-                                    <div>
-                                        <p>${actor.description}</p>
-                                    </div>
                                     <div class="row">
                                         <div class="col-md-8 col-sm-12 col-xs-12">
+                                            <p>${actor.description}</p>
+                                            <p class="time"><a href="celebritysingle.html#"></a></p>
+                                            <div class="title-hd-sm">
+
+                                            </div>
+                                            <div class="mvsingle-item ov-item">
+                                            </div>
                                             <div class="title-hd-sm">
                                                 <h4>filmography</h4>
                                             </div>
+                                            <!-- movie cast -->
                                             <div class="mvcast-item">
                                                 <c:forEach items="${movies}" var="movie">
-                                                    <div class="cast-it">
-
-                                                        <div class="cast-left cebleb-film">
-                                                            <img src="/image?fileName=${movie.picture}" alt="">
-                                                            <div>
-                                                                <a href="/moviesingle?movieId=${movie.id}">${movie.title} </a>
-                                                                <p class="time">${actor.name}</p>
-                                                            </div>
+                                                <div class="cast-it">
+                                                    <div class="cast-left cebleb-film">
+                                                        <img style="width: 50px" height="50" src="/image?fileName=${movie.picture}" alt="">
+                                                        <div>
+                                                            <a href="/moviesingle?movieId=${movie.id}">${movie.title}</a>
+                                                            <p class="time"></p>
                                                         </div>
 
                                                     </div>
+                                                    <p>...${movie.year}</p>
+                                                </div>
                                                 </c:forEach>
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-xs-12 col-sm-12">
                                             <div class="sb-it">
                                                 <h6>Fullname: </h6>
-                                                <p>${actor.name}&nbsp;${actor.surname}</p>
+                                                <p><a href="celebritysingle.html#">Hugh Jackman</a></p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>Date of Birth: </h6>
-                                                <p>${actor.age}</p>
+                                                <p>June 24, 1982</p>
                                             </div>
                                             <div class="sb-it">
                                                 <h6>Country: </h6>
-                                                <p>${actor.nationality}</p>
+                                                <p>Australian</p>
+                                            </div>
+                                            <div class="sb-it">
+                                                <h6>Height:</h6>
+                                                <p>186 cm/p>
+                                            </div>
+                                            <div class="sb-it">
+                                                <h6>Keywords:</h6>
+                                                <p class="tags">
+                                                    <span class="time"><a
+                                                            href="celebritysingle.html#">jackman</a></span>
+                                                    <span class="time"><a
+                                                            href="celebritysingle.html#">wolverine</a></span>
+                                                    <span class="time"><a href="celebritysingle.html#">logan</a></span>
+                                                    <span class="time"><a
+                                                            href="celebritysingle.html#">blockbuster</a></span>
+                                                    <span class="time"><a href="celebritysingle.html#">final battle</a></span>
+                                                </p>
+                                            </div>
+                                            <div class="ads">
+                                                <img src="images/uploads/ads1.png" alt="">
                                             </div>
                                         </div>
                                     </div>
@@ -260,7 +282,7 @@
     <div class="container">
         <div class="flex-parent-ft">
             <div class="flex-child-ft item1">
-                <a href="index.html"><img class="logo" src="../images/logo1.png" alt=""></a>
+                <a href="/home"><img class="logo" src="../images/logo1.png" alt=""></a>
                 <p>Republic Armenia City Gyumri<br>
                 </p>
                 <p>Call us: <a href="singleactor.jsp#">(+374) 69 89 62</a></p>
@@ -279,9 +301,9 @@
 </footer>
 <!-- end of footer section-->
 
-<script src="../js/jquery.js"></script>
-<script src="../js/plugins.js"></script>
-<script src="../js/plugins2.js"></script>
-<script src="../js/custom.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 </body>
 </html>

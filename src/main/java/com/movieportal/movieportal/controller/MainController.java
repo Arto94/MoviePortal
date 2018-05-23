@@ -1,14 +1,18 @@
 package com.movieportal.movieportal.controller;
 
 
+import com.movieportal.movieportal.model.Blog;
 import com.movieportal.movieportal.model.Movie;
 import com.movieportal.movieportal.model.User;
+import com.movieportal.movieportal.repository.ActorRepository;
+import com.movieportal.movieportal.repository.BlogRepository;
 import com.movieportal.movieportal.repository.MovieRepository;
 import com.movieportal.movieportal.repository.UserRepository;
 import com.movieportal.movieportal.security.CurrentUser;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,16 +40,18 @@ public class MainController {
     @Value("${movieportal.product.upload.path}")
     private String imageUploadPath;
 
+    @Autowired
+    private ActorRepository actorRepository;
+
+    @Autowired
+    private BlogRepository blogRepository;
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String mainPage(ModelMap map, @RequestParam(value = "message", required = false) String message) {
         List<Movie> movies = movieRepository.findAll();
         Random random = new Random();
-        int number = random.nextInt(movies.size());
-        if (number >= 0 && number <= movies.size() / 2) {
-            map.addAttribute("movies", movies.subList(number, number + 4));
-        } else {
-            map.addAttribute("movies", movies.subList(number - 4, number));
-        }
+        int number = random.nextInt((int)movieRepository.count()/4);
+        map.addAttribute("movies", movieRepository.findAllBy(new PageRequest(number,4)).getContent());
         map.addAttribute("user", new User());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -54,6 +60,11 @@ public class MainController {
             map.addAttribute("currentUser", principal.getUser());
         }
         map.addAttribute("message", message != null ? message : "");
+        int actorPageNumber = random.nextInt((int)actorRepository.count()/4);
+        map.addAttribute("actors",actorRepository.findAll(new PageRequest(actorPageNumber,4)).getContent());
+        map.addAttribute("blog",blogRepository.findAll(new PageRequest(0,1)).getContent().get(0));
+        map.addAttribute("ratedMovies", movieRepository.findAllByOrderByImdbRateDesc
+                (new PageRequest(0,4)).getContent());
         return "index";
     }
 

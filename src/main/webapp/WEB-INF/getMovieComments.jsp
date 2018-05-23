@@ -10,14 +10,21 @@
 
 <div class="comments" id="blogComments">
     <c:forEach items="${comments}" var="comment">
+
         <div class="cmt-item flex-it">
+
             <img src="/image?fileName=${comment.user.picUrl}" alt="">
+
             <div class="author-infor">
                 <div class="flex-it2">
                     <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span class="time"> ${comment.date}</span>
                 </div>
                 <p>${comment.message}</p>
+
             </div>
+            <c:if test="${userType}">
+                <a href="/admin/deleteComment?commentId=${comment.id}&movieId=${comment.movie.id}">X</a>
+            </c:if>
         </div>
     </c:forEach>
 </div>

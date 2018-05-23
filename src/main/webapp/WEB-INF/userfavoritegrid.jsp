@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="profile" href="blogdetail.html#">
+    <link rel="profile" href="userfavoritegrid.html#">
 
     <!--Google Font-->
     <link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600'/>
@@ -38,7 +38,7 @@
         <span></span>
     </div>
 </div>
-
+<!--end of preloading-->
 <div class="login-wrapper" id="login-content">
     <div class="login-content">
         <a href="/home" class="close">x</a>
@@ -106,7 +106,6 @@
         </spring:form>
     </div>
 </div>
-<!-- BEGIN | Header -->
 <header class="ht-header">
     <div class="container">
         <nav class="navbar navbar-default navbar-custom">
@@ -120,9 +119,8 @@
                         <span></span>
                     </div>
                 </div>
-                <a href="/home"><img class="logo" src="images/logo1.png" alt="" width="119" height="58"></a>
+                <a href="/home"><img class="logo" src="../images/logo1.png" alt="" width="119" height="58"></a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-child-menu menu-left">
                     <li class="dropdown first">
@@ -142,9 +140,8 @@
                     </li>
                     <c:if test="${currentUser != null}">
                         <li class="dropdown first">
-                            <a href="/Profile?userId=${currentUser.id}">
-                                My profile
-                            </a></li>
+                            <a href="/Profile?userId=${currentUser.id}">My profile</a>
+                        </li>
                     </c:if>
                 </ul>
                 <c:if test="${currentUser==null}">
@@ -155,140 +152,109 @@
                 </c:if>
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
-                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                        <li><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
                     </ul>
                 </c:if>
             </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <!-- /.navbar-collapse -->
         </nav>
 
         <!-- top search form -->
-
     </div>
 </header>
-<!-- END | Header -->
 
-<div class="hero common-hero">
+<div class="hero user-hero">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="hero-ct">
-                    <h1> blog detail</h1>
+                    <h1>${user.name} ${user.surname} profile</h1>
                     <ul class="breadcumb">
                         <li class="active"><a href="/home">Home</a></li>
-                        <li><span class="ion-ios-arrow-right"></span> blog listing</li>
+                        <li><span class="ion-ios-arrow-right"></span>Favorite movies</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- blog detail section-->
 <div class="page-single">
     <div class="container">
-        <div class="row">
-            <div class="movie-tabs">
-                <div class="tabs">
-                    <ul class="tab-links tabs-mv">
-                        <li><a href="/moviesingle?movieId=${singleMovie.id}"> Movie Page</a></li>
-                        <li><a href="/movieActors?movieId=${singleMovie.id}"> Cast & Crew </a></li>
-                    </ul>
-                </div>
-            </div>
-                    <div class="col-md-9 col-sm-12 col-xs-12">
-                <div class="blog-detail-ct">
-                    <h1>${singleMovie.title}</h1>
-                    <img src="/image?fileName=${singleMovie.picture}" alt="">
-                    <p>${singleMovie.description}</p>
-
-                    <div class="flex-it flex-ct">
-                    </div>
-                    <!-- share link -->
-
-                    <!-- comment items -->
-                    <div class="comments" id="blogComments">
-                        <c:forEach items="${comments}" var="comment">
-
-                            <div class="cmt-item flex-it">
-
-                                <img style="width: 100px" height="300px" src="/image?fileName=${comment.user.picUrl}" alt="">
-
-                                <div class="author-infor">
-                                    <div class="flex-it2">
-                                        <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span class="time"> ${comment.date}</span>
-                                    </div>
-                                    <p>${comment.message}</p>
-
-                                </div>
-                                <c:if test="${userType}">
-                                    <a href="/admin/deleteComment?commentId=${comment.id}&movieId=${comment.movie.id}">X</a>
-                                </c:if>
-                            </div>
-                        </c:forEach>
-                    </div>
-
-                    <c:if test="${currentUser != null}">
-                        <div class="comment-form">
-                            <h4>Leave a comment</h4>
-                            <spring:form action="/addComment" method="post" modelAttribute="modelComment"  >
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
-                                    </div>
-                                    <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
-                                    <spring:input path="movie" type="hidden" value="${singleMovie.id}" name="movie" ></spring:input>
-                                </div>
-                                <input class="submit" type="submit" placeholder="submit">
-                            </spring:form>
-                        </div>
-                    </c:if>
-                    <!-- comment form -->
-                </div>
-            </div>
+        <div class="row ipad-width2">
             <div class="col-md-3 col-sm-12 col-xs-12">
-                <div class="sidebar">
+                <div class="user-information">
+                    <div class="user-img">
+                        <a href="#"><img src="/image?fileName=${user.picUrl}" class="userProfileImgStyle"
+                                         alt=""><br></a>
+                    </div>
+                    <div class="user-fav">
+                        <p>Account Details</p>
+                        <ul>
+                            <li><a href="/user">Profile</a></li>
+                            <li class="active"><a href="#">Favorite movies</a></li>
+                            <li><a href="/kinoman">Kinoman</a></li>
 
+                        </ul>
+                    </div>
+                    <div class="user-fav">
+                        <p>Others</p>
+                        <ul>
+                            <li><a href="/logout">Log out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="topbar-filter user">
+                    <p>Found <span>${favoriteMovies.size()}</span> in total</p>
 
+                    <a href="/userFavoriteMovies?userId=${user.id}" class="list"><i
+                            class="ion-ios-list-outline "></i></a>
+                    <a href="#" class="grid"><i class="ion-grid active"></i></a>
+                </div>
+                <div class="flex-wrap-movielist grid-fav">
+                    <c:forEach items="${favoriteMovies}" var="movie">
+                        <div class="movie-item-style-2 movie-item-style-1 style-3">
+                            <img src="/image?fileName=${movie.picture}" alt="">
+                            <div class="hvr-inner">
+                                <a href="/moviesingle?movieId=${movie.id}"> Read more <i class="ion-android-arrow-dropright"></i> </a>
+                            </div>
+                            <div class="mv-item-infor">
+                                <h6><a href="/moviesingle?movieId=${movie.id}">${movie.title}</a></h6>
+                                <p class="rate"><i class="ion-android-star"></i><span>${movie.imdbRate}</span> /10</p>
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- end of  blog detail section-->
 <!-- footer section-->
 <footer class="ht-footer">
     <div class="container">
         <div class="flex-parent-ft">
             <div class="flex-child-ft item1">
-                <a href="/home"><img class="logo" src="images/logo1.png" alt=""></a>
-
-                <p>Call us: <a href="/home">(+374) 44-19-19-91</a></p>
+                <a href="/home"><img class="logo" src="../images/logo1.png" alt=""></a>
+                <p>Republic Armenia City Gyumri<br>
+                </p>
+                <p>Call us: <a href="singleactor.jsp#">(+374) 69 89 62</a></p>
             </div>
-
-
         </div>
     </div>
     <div class="ft-copyright">
         <div class="ft-left">
-            <p>© 2017 Blockbuster. All Rights Reserved. Designed by Artash&Karen.</p>
+            <p>© 2018 Armbuster. All Rights Reserved. Designed by Artash and Karen.</p>
         </div>
         <div class="backtotop">
-            <p><a href="/home" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
+            <p><a href="singleactor.jsp#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a>
+            </p>
         </div>
     </div>
 </footer>
 <!-- end of footer section-->
-
-<script>
-    setInterval(function () {
-        $.ajax({
-            url: "http://localhost:8080/getComments?movieId=${singleMovie.id}",
-            success: function (result) {
-                $("#blogComments").html(result);
-            }
-        });
-    }, 6000);
-</script>
 
 <script src="js/jquery.js"></script>
 <script src="js/plugins.js"></script>

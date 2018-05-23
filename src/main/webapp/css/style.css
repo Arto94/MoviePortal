@@ -6920,6 +6920,10 @@ ul {
     padding: 30px 0 20px 0;
 }
 
+.userProfileImgStyle{
+    height: 200px;
+}
+
 .user-information .user-img img {
     margin-bottom: 30px;
 }
@@ -9415,6 +9419,7 @@ header .top-search {
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
+    margin-left: 100px;
 }
 
 header .top-search select,
@@ -9890,7 +9895,7 @@ footer.full-width-ft .ft-copyright {
 .logoutImage {
     margin-left: 90%;
     width: 50px;
-    height: 50px;
+    height: 30px;
 }
 
 .searchByYearMovie {
@@ -9916,4 +9921,13 @@ footer.full-width-ft .ft-copyright {
 
 .actornamestyle{
     color: white;
+}
+
+.movieActorsImgStyle{
+    width: 100px;
+    height: 150px;
+}
+
+.celebritygridimgStyle{
+    width: 270px;
 }

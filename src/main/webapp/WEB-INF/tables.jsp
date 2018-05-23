@@ -195,6 +195,38 @@
                     </div>
                 </div>
             </div>
+                <div class="col-lg-6">
+                    <div class="portlet portlet-default">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h4>Director Table</h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>Director Name</th>
+                                    </tr>
+                                    </thead>
+                                    <c:forEach items="${directos}" var="user">
+                                        <tbody>
+                                        <tr>
+                                            <td>${user.name}</td>
+                                            <td><a href="/admin/deleteDirector?directorId=${user.id}"><img
+                                                    src="../img/deleteicon.png"  width="30px"
+                                                    height="30px"></a></td>
+                                        </tr>
+                                        </tbody>
+                                    </c:forEach>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-lg-6">
@@ -254,6 +286,43 @@
                                             <td>${movie.title}</td>
                                             <td><img src="/image?fileName=${movie.picture} " style="height: 90px "></td>
                                             <td><a href="/admin/deleteMovie?movieId=${movie.id}"><img
+                                                    src="../img/deleteicon.png"  width="30px"
+                                                    height="30px"></a></td>
+                                        </tr>
+                                        </tbody>
+                                    </c:forEach>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="portlet portlet-default">
+                        <div class="portlet-heading">
+                            <div class="portlet-title">
+                                <h4>User Table</h4>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>User Name</th>
+                                        <th>User Surname</th>
+                                        <th>User Pic</th>
+                                    </tr>
+                                    </thead>
+                                    <c:forEach items="${users}" var="user">
+                                        <tbody>
+                                        <tr>
+                                            <td>${user.name}</td>
+                                            <td>${user.surname}</td>
+                                            <td><img src="/image?fileName=${user.picUrl} " style="height: 90px "></td>
+                                            <td><a href="/admin/deleteUser?userId=${user.id}"><img
                                                     src="../img/deleteicon.png"  width="30px"
                                                     height="30px"></a></td>
                                         </tr>

@@ -52,6 +52,9 @@ public class User {
     @Column
     private boolean verify;
 
+    @Column(name = "answer_count")
+    private int answerCount;
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "wish",

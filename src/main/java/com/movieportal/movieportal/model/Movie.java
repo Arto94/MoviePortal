@@ -48,6 +48,7 @@ public class Movie {
     @Column(name = "movie_trailer")
     private String movieTrailer;
 
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "movie_genre",

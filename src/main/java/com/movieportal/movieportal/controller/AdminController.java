@@ -1,6 +1,7 @@
 package com.movieportal.movieportal.controller;
 
 
+import com.movieportal.movieportal.mail.EmailServiceImpl;
 import com.movieportal.movieportal.model.*;
 import com.movieportal.movieportal.repository.*;
 import com.movieportal.movieportal.util.UserUtil;
@@ -44,7 +45,16 @@ public class AdminController {
     private UserRepository userRepository;
 
     @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
+    private BlogCommentRepository blogCommentRepository;
+
+    @Autowired
     private UserUtil userUtil;
+
+    @Autowired
+    private EmailServiceImpl emailService;
 
     @Value("${movieportal.product.upload.path}")
     private String imageUploadPath;
@@ -174,6 +184,15 @@ public class AdminController {
         }
         movie.setMovieDirectors(directorList);
         movieRepository.save(movie);
+        Movie emailMovie = movieRepository.findByTitle(movie.getTitle());
+        List<User> all = userRepository.findAll();
+        for (User user : all) {
+            String message = "Hi " + user.getName() +" " +  user.getSurname() + "We Add new Movie, " +
+                    "please visit http://localhost:8088/moviesingle?movieId="+ emailMovie.getId() + "";
+            emailService.sendSimpleMessage(user.getEmail(), "New Movie", message);
+
+        }
+
         return "redirect:/admin/basicFormElements";
     }
 
@@ -185,6 +204,7 @@ public class AdminController {
         map.addAttribute("genres", genreRepository.findAll());
         map.addAttribute("directos", directorRepository.findAll());
         map.addAttribute("companies", companyRepository.findAll());
+        map.addAttribute("users", userRepository.findAll());
         map.addAttribute("admin", userUtil.getPrincipal());
         return "tables";
     }
@@ -192,6 +212,12 @@ public class AdminController {
     @GetMapping("/admin/deleteCompany")
     public String deleteCompany(@RequestParam("companyId") int id) {
         companyRepository.delete(id);
+        return "redirect:/basicTables";
+    }
+
+    @GetMapping("/admin/deleteUser")
+    public String adminDeleteUser(@RequestParam("userId") int id) {
+        userRepository.delete(id);
         return "redirect:/basicTables";
     }
 
@@ -227,6 +253,18 @@ public class AdminController {
         blog.setPicture(picName);
         blogRepository.save(blog);
         return "redirect:/admin/basicFormElements";
+    }
+
+    @GetMapping("/admin/deleteComment")
+    public String deleteComment(@RequestParam("commentId") int id, @RequestParam("movieId") int movieId) {
+        commentRepository.delete(id);
+        return "redirect:/movieComment?movieId="+movieId;
+    }
+
+    @GetMapping("/admin/deleteBlogComment")
+    public String deleteBlogComment(@RequestParam("commentId") int id, @RequestParam("blogId") int blogId){
+        blogCommentRepository.delete(id);
+        return "redirect:/blogDetail?id="+blogId;
     }
 }
 

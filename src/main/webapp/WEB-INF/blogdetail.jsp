@@ -162,7 +162,7 @@
                 </c:if>
                 <c:if test="${currentUser!=null}">
                     <ul class="nav navbar-nav flex-child-menu menu-right">
-                        <li ><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
+                        <li><a href="/logout"><img class="logoutImage" src="/image?fileName=gnome-logout.png"></a></li>
                     </ul>
                 </c:if>
             </div>
@@ -204,29 +204,36 @@
                     <!-- comment items -->
                     <div class="comments" id="blogComments">
                         <c:forEach items="${blogComments}" var="comment">
-                        <div class="cmt-item flex-it">
-                            <img src="/image?fileName=${comment.user.picUrl}" alt="">
-                            <div class="author-infor">
-                                <div class="flex-it2">
-                                    <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span class="time"> ${comment.date}</span>
+                            <div class="cmt-item flex-it">
+                                <img style="width: 120px; height: 120px" src="/image?fileName=${comment.user.picUrl}"
+                                     alt="">
+                                <div class="author-infor">
+                                    <div class="flex-it2">
+                                        <h6><a href="">${comment.user.name} ${comment.user.surname}</a></h6> <span
+                                            class="time"> ${comment.date}</span>
+                                    </div>
+                                    <p>${comment.message}</p>
                                 </div>
-                                <p>${comment.message}</p>
+                                <c:if test="${userType}">
+                                    <a href="/admin/deleteBlogComment?commentId=${comment.id}&blogId=${comment.blog.id}">X</a>
+                                </c:if>
                             </div>
-                        </div>
                         </c:forEach>
                     </div>
 
                     <c:if test="${currentUser != null}">
                         <div class="comment-form">
                             <h4>Leave a comment</h4>
-                            <spring:form action="/addBlogComment" method="post" modelAttribute="model"  >
-                               <div class="row">
+                            <spring:form action="/addBlogComment" method="post" modelAttribute="model">
+                                <div class="row">
                                     <div class="col-md-12">
-                                        <spring:textarea path="message"  cssStyle="height: 250px"></spring:textarea>
+                                        <spring:textarea path="message" cssStyle="height: 250px"></spring:textarea>
                                     </div>
-                                   <spring:input type="hidden" value="${currentUser.id}" name="userId" path="user"></spring:input>
-                                   <spring:input path="blog" type="hidden" value="${blog.id}" name="movie" ></spring:input>
-                               </div>
+                                    <spring:input type="hidden" value="${currentUser.id}" name="userId"
+                                                  path="user"></spring:input>
+                                    <spring:input path="blog" type="hidden" value="${blog.id}"
+                                                  name="movie"></spring:input>
+                                </div>
                                 <input class="submit" type="submit" placeholder="submit">
                             </spring:form>
                         </div>

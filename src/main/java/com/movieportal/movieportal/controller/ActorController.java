@@ -24,9 +24,12 @@ public class ActorController {
     private MovieRepository movieRepository;
 
     @GetMapping("/actors")
-    public String getActors(ModelMap map, @RequestParam(value = "errorMessage", required = false) String errorMessage) {
-        map.addAttribute("actors", actorRepository.findAll());
-        map.addAttribute("errorMessage", errorMessage != null ? errorMessage : "");
+    public String getActors(ModelMap map) {
+        List<Actor> all = actorRepository.findAll();
+        for (Actor actor : all) {
+            actor.setDescription(actor.getDescription().substring(0,200)+"...");
+        }
+        map.addAttribute("actors", all);
         map.addAttribute("user", new User());
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
@@ -35,6 +38,23 @@ public class ActorController {
         }
         map.addAttribute("user", new User());
         return "actors";
+    }
+
+    @GetMapping("/actors1")
+    public String getActors1(ModelMap map) {
+        List<Actor> all = actorRepository.findAll();
+        for (Actor actor : all) {
+            actor.setDescription(actor.getDescription().substring(0,200)+"...");
+        }
+        map.addAttribute("actors", all);
+        map.addAttribute("user", new User());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() != null && authentication.getPrincipal() instanceof CurrentUser) {
+            CurrentUser principal = (CurrentUser) authentication.getPrincipal();
+            map.addAttribute("currentUser", principal.getUser());
+        }
+        map.addAttribute("user", new User());
+        return "celebritygrid01";
     }
 
     @GetMapping("/singleActor")
@@ -64,17 +84,49 @@ public class ActorController {
             if (actors.size() == 1) {
                 return "redirect:/singleActor?actorId=" + actors.get(0).getId();
             } else if (actors.size() > 1) {
+                for (Actor actor : actors) {
+                    actor.setDescription(actor.getDescription().substring(0,200)+"...");
+                }
                 map.addAttribute("actors", actors);
                 return "actors";
             } else {
-                List<Actor> actorsContains = actorRepository.findAllByNameContaining(actorName);
+                List<Actor> actorsContains = actorRepository.findAllByNameLike(actorName+"%");
                 if (actorsContains.size() == 0) {
-                    return "redirect:/actors?errorMessage=No Actor in this Name";
+                    return "redirect:/actors";
                 } else {
+                    for (Actor actor : actorsContains) {
+                        actor.setDescription(actor.getDescription().substring(0,200)+"...");
+                    }
                     map.addAttribute("actors", actorsContains);
                     map.addAttribute("user", new User());
                     return "actors";
                 }
             }
         }
+
+    @GetMapping("/searchActor1")
+    public String searchMovie1 (ModelMap map, @RequestParam("actorName") String actorName){
+        List<Actor> actors = actorRepository.findAllByName(actorName);
+        if (actors.size() == 1) {
+            return "redirect:/singleActor?actorId=" + actors.get(0).getId();
+        } else if (actors.size() > 1) {
+            for (Actor actor : actors) {
+                actor.setDescription(actor.getDescription().substring(0,200)+"...");
+            }
+            map.addAttribute("actors", actors);
+            return "celebritygrid01";
+        } else {
+            List<Actor> actorsContains = actorRepository.findAllByNameLike(actorName+"%");
+            if (actorsContains.size() == 0) {
+                return "redirect:/actors1";
+            } else {
+                for (Actor actor : actorsContains) {
+                    actor.setDescription(actor.getDescription().substring(0,200)+"...");
+                }
+                map.addAttribute("actors", actorsContains);
+                map.addAttribute("user", new User());
+                return "celebritygrid01";
+            }
+        }
     }
+}
